@@ -1,4 +1,4 @@
-package com.example.android_application.Fragment;
+package com.example.android_application.presentation.trending.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,14 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.android_application.R;
 
-public class Mypage_Fragment extends Fragment {
+public class Bookmark_Fragment extends Fragment {
 
     private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag3, container, false);
+        view = inflater.inflate(R.layout.frag4, container, false);
 
         return view;
     }
