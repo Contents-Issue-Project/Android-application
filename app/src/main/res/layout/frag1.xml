@@ -4,10 +4,84 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- #Tringding과 버튼을 가로 정렬하기 위해 LinearLayout 사용-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trending"
+            android:textSize="40sp"
+            android:layout_gravity="start"/>
+
+        <!-- 하나는 왼쪽, 하나는 오른쪽 정렬하기 위해 필요하대서 넣었다.-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/trending_button"
+            android:layout_width="150sp"
+            android:layout_height="50sp"
+            android:text="@string/more"
+            android:layout_gravity="end"
+            android:background="#00ff0000"/>
+
+    </LinearLayout>
+
+    <!-- 가로 스크롤은 Java에서 구현해줄 예정 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Trending_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+    </androidx.recyclerview.widget.RecyclerView>
+    <!-- 여기까지가 #Trending. 아래는 #New 부분 반복-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_string"
+            android:textSize="40sp"
+            android:layout_gravity="start"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/new_button"
+            android:layout_width="150sp"
+            android:layout_height="50sp"
+            android:text="@string/more"
+            android:layout_gravity="end"
+            android:background="#00ff0000"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/New_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+    </androidx.recyclerview.widget.RecyclerView>
+    <!-- 여기까지가 New-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOME 화면입니다."
-        android:textSize="40sp"/>
+        android:text="@string/bookmark"
+        android:textSize="40sp"
+        android:layout_gravity="start"/>
 
 </LinearLayout>

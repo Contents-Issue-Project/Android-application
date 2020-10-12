@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_item_linear"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 이미지는 가로, 세로 가져오는 크기에 맞춰서 조정할 예정-->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_poster"
+        android:layout_width="200sp"
+        android:layout_height="250sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- text 첫 번째 줄 -->
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/item_title"/>
+
+        <!-- text 두 번째줄 : 두번째 줄 자체를 java에서 만들어서 한 줄로 가져와도 됨
+                            왼쪽 마진 안보고 바로 가운데 정렬 할 수 있으니까 그게 더 좋을 수도-->
+        <TextView
+            android:id="@+id/item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_below="@id/item_title" />
+
+        <TextView
+            android:id="@+id/item_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_below="@id/item_title"
+            android:layout_toRightOf="@id/item_type"/>
+
+        <!-- text 세 번째 줄 -->
+        <TextView
+            android:id="@+id/item_statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_below="@id/item_type"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
