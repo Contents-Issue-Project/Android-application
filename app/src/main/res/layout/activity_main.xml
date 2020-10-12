@@ -14,7 +14,8 @@
         app:itemTextColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        android:background="#ffffff"/>
 
     <FrameLayout
         android:id="@+id/main_frame"
