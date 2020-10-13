@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.trending.Fragment;
+package com.example.android_application.presentation.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.R;
-import com.example.android_application.presentation.trending.ItemAdapter;
-import com.example.android_application.presentation.trending.ItemData;
+import com.example.android_application.presentation.ItemAdapter;
+import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.android_application.domain;
+package com.example.android_application.Domain;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;

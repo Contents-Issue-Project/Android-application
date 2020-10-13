@@ -1,7 +1,6 @@
-package com.example.android_application.presentation.trending;
+package com.example.android_application.presentation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.http.Url;
 

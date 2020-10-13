@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.android_application.presentation.trending.Fragment.Bookmark_Fragment;
-import com.example.android_application.presentation.trending.Fragment.Home_Fragment;
-import com.example.android_application.presentation.trending.Fragment.Mypage_Fragment;
-import com.example.android_application.presentation.trending.Fragment.Search_Fragment;
+import com.example.android_application.presentation.Fragment.Bookmark_Fragment;
+import com.example.android_application.presentation.Fragment.Home_Fragment;
+import com.example.android_application.presentation.Fragment.Mypage_Fragment;
+import com.example.android_application.presentation.Fragment.Search_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

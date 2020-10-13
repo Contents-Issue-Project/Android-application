@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.trending;
+package com.example.android_application.presentation;
 
 import android.content.Context;
 import android.util.Log;

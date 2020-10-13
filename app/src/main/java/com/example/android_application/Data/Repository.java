@@ -1,4 +1,4 @@
-package com.example.android_application.data;
+package com.example.android_application.Data;
 
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
