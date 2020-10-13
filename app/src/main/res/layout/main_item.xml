@@ -42,28 +42,22 @@
             android:textSize="15sp"
             android:layout_below="@id/item_title" />
 
-        <TextView
+<!--        <TextView
             android:id="@+id/item_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:layout_below="@id/item_title"
             android:layout_toRightOf="@id/item_type"/>
+            -->
 
         <!-- text 세 번째 줄 -->
         <TextView
-            android:id="@+id/item_1st"
+            android:id="@+id/top_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:layout_below="@id/item_type" />
-        <TextView
-            android:id="@+id/item_2nd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_below="@id/item_type"
-            android:layout_toRightOf="@id/item_1st"/>
 
     </RelativeLayout>
 

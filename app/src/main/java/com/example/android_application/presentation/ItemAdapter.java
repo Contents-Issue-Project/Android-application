@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
+import com.example.android_application.util.DataUnavailableException;
+import com.example.android_application.util.WrongRequestException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.Holder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.Holder> implements Contract.View{
 
     private Context context;
     private List<ItemData> list = new ArrayList<>();
@@ -39,23 +42,49 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.Holder> {
         return list.size();  // RecyclerView의 size return
     }
 
+    public void addItems(ArrayList<ItemData> items) {
+        list.addAll(items);
+    }
+
+
+    public void addItem(ItemData item) {
+        list.add(item);
+    }
+
+    @Override
+    public void setUpContent(DataFormat dataformat) {
+        for (DataFormat.Item item : dataformat.data) {
+            addItem(new ItemData(item.title_kr, item.date, item.type, item.top_word));
+        }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void handleWrongRequest(WrongRequestException exception) {
+    System.out.println("Wrong Request");
+    }
+
+    @Override
+    public void handleDataUnavailable(DataUnavailableException exception) {
+        System.out.println("Data unavailable");
+    }
+
     // ViewHolder는 하나의 View를 보존하는 역할을 한다.
     public class Holder extends RecyclerView.ViewHolder {
         public TextView titleText;
         public TextView dateText;
         public TextView typeText;
         public TextView genreText;
-        public TextView stat1stText;
-        public TextView stat2ndText;
+        public TextView top_wordText;
 
         public Holder(View view) {
             super(view);
             titleText = (TextView) view.findViewById(R.id.item_title);
             dateText = (TextView) view.findViewById(R.id.item_date);
             typeText = (TextView) view.findViewById(R.id.item_type);
-            genreText = (TextView) view.findViewById(R.id.item_genre);
-            stat1stText = (TextView) view.findViewById(R.id.item_1st);
-            stat2ndText = (TextView) view.findViewById(R.id.item_2nd);
+            //genreText = (TextView) view.findViewById(R.id.item_genre);
+            top_wordText = (TextView) view.findViewById(R.id.top_word);
+
         }
     }
 
@@ -67,9 +96,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.Holder> {
         holder.titleText.setText(list.get(itemposition).title);
         holder.dateText.setText(list.get(itemposition).release_date);
         holder.typeText.setText(list.get(itemposition).type);
-        holder.genreText.setText(list.get(itemposition).genre);
-        holder.stat1stText.setText(list.get(itemposition).stat_1st);
-        holder.stat2ndText.setText(list.get(itemposition).stat_2nd);
+        //holder.genreText.setText(list.get(itemposition).genre);
+        holder.top_wordText.setText(list.get(itemposition).top_word);
         Log.e("StudyApp", "onBindViewHolder" + itemposition);
     }
 }
