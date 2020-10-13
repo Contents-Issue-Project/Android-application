@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         frag2 = new Search_Fragment();
         frag3 = new Mypage_Fragment();
         frag4 = new Bookmark_Fragment();
+
         setFrag(0); // 첫 프래그먼트 화면 지정
     }
 
