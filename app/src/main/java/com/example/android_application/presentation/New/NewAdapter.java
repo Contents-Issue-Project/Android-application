@@ -56,7 +56,7 @@ public class NewAdapter extends RecyclerView.Adapter<NewAdapter.Holder> implemen
     @Override
     public void setUpContent(DataFormat dataformat) {
         for (DataFormat.Item item : dataformat.data) {
-            addItem(new ItemData(item.title_kr, item.date, item.type, item.top_word));
+            addItem(new ItemData(item.contentId, item.title_kr, item.date, item.type, item.is_single, item.poster, item.top_word));
         }
         notifyDataSetChanged();
     }

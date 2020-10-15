@@ -10,7 +10,7 @@ public class DataFormat {
 
     public class Item {
         @SerializedName("content_id")
-        public String id;
+        public String contentId;
         @SerializedName("title_kr")
         public String title_kr;
         @SerializedName("title_en")

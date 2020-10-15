@@ -14,10 +14,12 @@ public class ItemData {
     //public String genre;
     public String top_word = "";
 
-    public ItemData(String title, String release_date, String type, String[] top_word) { //ArrayList<String> genre
-        // this.poster = poster;
+    public ItemData(String contentId, String title, String release_date, String type, boolean isSingle, String poster, String[] top_word) { //ArrayList<String> genre
+
+        this.contentId = contentId;
         this.title = title;
-        this.release_date = release_date;
+
+        this.release_date = "  (".concat(release_date.substring(2).concat(")"));
         this.type = type;
         /*
         String temp_genre = "";
@@ -26,9 +28,11 @@ public class ItemData {
         }
         this.genre = temp_genre;
         */
+        this.isSingle = isSingle;
+        this.poster = "http://static.andang.net".concat(poster);
 
         // topword들을 하나의 String으로 합쳐주는 과정
-        for(int i = 0; i< top_word.length; i++){
+        for(int i = 0; i< 2; i++){
             this.top_word = this.top_word.concat("#".concat(top_word[i]).concat(" "));
         }
     }
@@ -44,7 +48,7 @@ public class ItemData {
 
         String[] a = {"ㅋㅋㅋ", " 3시네"};
         for (int i = 1; i <= numContacts; i++) {
-            contacts.add(new ItemData("컨텐츠 제목", " (방영 날짜)", "유형 /", a)); //example
+            contacts.add(new ItemData("id","컨텐츠 제목", " (방영 날짜)", "유형 /, ", true, "URL", a)); //example
         }
         return contacts;
     }
