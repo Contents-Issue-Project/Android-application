@@ -13,7 +13,6 @@
         android:id="@+id/item_poster"
         android:layout_width="108sp"
         android:layout_height="160sp"
-
         />
 
     <RelativeLayout

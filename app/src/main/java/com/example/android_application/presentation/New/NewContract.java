@@ -1,7 +1,7 @@
 package com.example.android_application.presentation.New;
 
 import com.example.android_application.Data.DataFormat;
-import com.example.android_application.Data.Trending.TrendingParam;
+import com.example.android_application.Data.New.NewParam;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
@@ -12,7 +12,7 @@ public interface NewContract {
         public void handleDataUnavailable(DataUnavailableException exception);
     }
     interface Presenter{
-        void loadTrending(TrendingParam trendingParam);
+        void loadNew(NewParam newParam);
         void bindView(DataFormat dataFormat);
     }
 }

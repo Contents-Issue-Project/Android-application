@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,18 +12,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_application.Data.New.NewParam;
 import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.R;
 import com.example.android_application.presentation.New.NewAdapter;
-import com.example.android_application.presentation.trending.TrendingContract;
-import com.example.android_application.presentation.trending.TrendingAdapter;
+import com.example.android_application.presentation.New.NewContract;
+import com.example.android_application.presentation.New.NewPresenter;
+import com.example.android_application.presentation.Trending.TrendingContract;
+import com.example.android_application.presentation.Trending.TrendingAdapter;
 import com.example.android_application.presentation.ItemData;
-import com.example.android_application.presentation.trending.TrendingPresenter;
+import com.example.android_application.presentation.Trending.TrendingPresenter;
 
 import java.util.ArrayList;
 
 public class Home_Fragment extends Fragment {
     private TrendingContract.Presenter trendingPresenter;
+    private NewContract.Presenter newPresenter;
 
     // private View view;
 
@@ -52,18 +55,32 @@ public class Home_Fragment extends Fragment {
         trending_recyclerView.setAdapter(trending_adapter);
 
         trendingPresenter = new TrendingPresenter(trending_adapter);
-        TrendingParam param = new TrendingParam();
-        // 요청값 count 수
-        param.result_count = 10;
-        trendingPresenter.loadTrending(param);
+        TrendingParam trending_param = new TrendingParam();
+        trending_param.result_count = 10;
+        trendingPresenter.loadTrending(trending_param);
 
 
-        new_list = ItemData.createContactsList(10);
+        //new_list = ItemData.createContactsList(10);
         new_recyclerView.setHasFixedSize(true);
-            new_adapter = new NewAdapter(getActivity(), new_list);
+        new_adapter = new NewAdapter(getActivity(), new_list);
         new_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         new_recyclerView.setAdapter(new_adapter);
-        trendingPresenter.loadTrending(param);
+
+        newPresenter = new NewPresenter(new_adapter);
+        NewParam new_param = new NewParam();
+        new_param.result_count = 10;
+        newPresenter.loadNew(new_param);
+
+/*      bookmark_recyclerView.setHasFixedSize(true);
+        bookmark_adapter = new BookmarkAdapter(getActivity(), bookmark_list);
+        bookmark_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        bookmark_recyclerView.setAdapter(bookmark_adapter);
+
+        bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
+        BookmarkParam bookmark_param = new BookmarkParam();
+        bookmark_param.result_count = 10;
+        bookmarkPresenter.loadBookmark(bookmark_param);*/
+
 
         Log.e("Frag", "HomeFragment");
 

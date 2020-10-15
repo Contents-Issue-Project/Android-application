@@ -1,25 +1,24 @@
-package com.example.android_application.presentation.New;
+package com.example.android_application.presentation.Trending;
 
 import com.example.android_application.Data.DataFormat;
-import com.example.android_application.Data.New.NewParam;
-import com.example.android_application.Domain.New.NewUseCase;
-import com.example.android_application.presentation.New.NewContract;
+import com.example.android_application.Data.Trending.TrendingParam;
+import com.example.android_application.Domain.Trending.TrendingUseCase;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
-public class NewPresenter implements  NewContract.Presenter{
-    private NewContract.View view;
-    private NewUseCase newUseCase;
+public class TrendingPresenter implements TrendingContract.Presenter {
+    private TrendingContract.View view;
+    private TrendingUseCase trendingUseCase;
 
-    public NewPresenter(NewContract.View view) {
+    public TrendingPresenter(TrendingContract.View view) {
         this.view = view;
-        newUseCase = new NewUseCase();
+        trendingUseCase = new TrendingUseCase();
     }
 
     @Override
-    public void loadNew(NewParam newParam) {
+    public void loadTrending(TrendingParam trendingParam) {
         //TODO 얘도 사실은 주입해줘야
-        newUseCase.execute(newParam, (response)->{
+        trendingUseCase.execute(trendingParam, (response)->{
             bindView(response); //callback
         }, (error)->handleError(error));
     }

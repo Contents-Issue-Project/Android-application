@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.trending;
+package com.example.android_application.presentation.Trending;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Trending.TrendingParam;

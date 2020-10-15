@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.trending;
+package com.example.android_application.presentation.Bookmark;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,21 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
-import com.example.android_application.presentation.Fragment.Home_Fragment;
 import com.example.android_application.presentation.ItemData;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder> implements TrendingContract.View{
+public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder> implements BookmarkContract.View{
 
     private Context context;
     private List<ItemData> list = new ArrayList<>();
 
-    public TrendingAdapter(Context context, List<ItemData> list) {
+    public BookmarkAdapter(Context context, List<ItemData> list) {
         this.context = context;
         this.list = list;
     }
@@ -61,7 +59,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
         for (DataFormat.Item item : dataformat.data) {
             addItem(new ItemData(item.contentId, item.title_kr, item.date, item.type, item.is_single, item.poster, item.top_word));
         }
-        notifyDataSetChanged(); //view 에 띄어주는 부분.
+        notifyDataSetChanged();
     }
 
     @Override
@@ -85,19 +83,18 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
 
         public Holder(View view) {
             super(view);
-
             titleText = (TextView) view.findViewById(R.id.item_title);
             dateText = (TextView) view.findViewById(R.id.item_date);
             typeText = (TextView) view.findViewById(R.id.item_type);
             //genreText = (TextView) view.findViewById(R.id.item_genre);
-            posterImg = (ImageView)view.findViewById(R.id.item_poster);
             top_wordText = (TextView) view.findViewById(R.id.top_word);
+            posterImg = (ImageView)view.findViewById(R.id.item_poster);
         }
     }
 
     // Todo 만들어진 ViewHolder에 data 삽입 ListView의 getView와 동일
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(BookmarkAdapter.Holder holder, int position) {
         // 각 위치에 문자열 세팅
         holder.titleText.setText(list.get(position).title);
         holder.dateText.setText(list.get(position).release_date);
@@ -105,8 +102,9 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
         //holder.genreText.setText(list.get(position).genre);
         holder.top_wordText.setText(list.get(position).top_word);
 
-        Picasso.get()
+        Glide.with(context)
                 .load(list.get(position).poster)
+                .error(R.drawable.error_img)
                 .into(holder.posterImg);
 
         Log.e("StudyApp", "onBindViewHolder" + position);
