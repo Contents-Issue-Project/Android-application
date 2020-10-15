@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 
 public class Bookmark_Fragment extends Fragment {
 
+    private String top_title;
+    private TextView textView;
     private RecyclerView recyclerView;
     private ItemAdapter adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
@@ -31,6 +34,10 @@ public class Bookmark_Fragment extends Fragment {
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
+        textView = (TextView) view.findViewById(R.id.top_title);
+
+        top_title = "#BookmMark";
+        textView.setText(top_title);
 
         list = ItemData.createContactsList(15);
         recyclerView.setHasFixedSize(true);

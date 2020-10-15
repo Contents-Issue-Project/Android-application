@@ -16,7 +16,7 @@ public class TrendingRemote implements TrendingDataSource {
     public Single<DataFormat> getTrending(TrendingParam trendingParam) {
         //TODO 재사용 불가능?
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.andang.net/")  //https://api.andang.net/test/redis/?key={key}
+                .baseUrl("https://api.andang.net/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
