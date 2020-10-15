@@ -1,4 +1,4 @@
-package com.example.android_application.presentation;
+package com.example.android_application.presentation.New;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,18 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
+import com.example.android_application.presentation.ItemData;
+import com.example.android_application.presentation.trending.TrendingContract;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.Holder> implements Contract.View{
+public class NewAdapter extends RecyclerView.Adapter<NewAdapter.Holder> implements TrendingContract.View{
 
     private Context context;
     private List<ItemData> list = new ArrayList<>();
 
-    public ItemAdapter(Context context, List<ItemData> list) {
+    public NewAdapter(Context context, List<ItemData> list) {
         this.context = context;
         this.list = list;
     }

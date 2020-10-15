@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 
 
 public interface TrendingApi {
-    @GET("/test/redis/?")
-    Single<Response<DataFormat>> getTrending(@Query("key") String Key);
+    @GET("/v1/contents/trending/{result_count}")
+    Single<Response<DataFormat>> getTrending(@Path("result_count") int result_count);
 }

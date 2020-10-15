@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.R;
-import com.example.android_application.presentation.ItemAdapter;
+import com.example.android_application.presentation.trending.TrendingAdapter;
 import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Bookmark_Fragment extends Fragment {
     private String top_title;
     private TextView textView;
     private RecyclerView recyclerView;
-    private ItemAdapter adapter;
+    private TrendingAdapter adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
 
     @Nullable
@@ -41,7 +41,7 @@ public class Bookmark_Fragment extends Fragment {
 
         list = ItemData.createContactsList(15);
         recyclerView.setHasFixedSize(true);
-        adapter = new ItemAdapter(getActivity(), list);
+        adapter = new TrendingAdapter(getActivity(), list);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recyclerView.setAdapter(adapter);
 

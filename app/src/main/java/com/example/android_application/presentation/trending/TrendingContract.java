@@ -1,11 +1,11 @@
-package com.example.android_application.presentation;
+package com.example.android_application.presentation.trending;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
-public interface Contract {
+public interface TrendingContract {
     interface View{
         public void setUpContent(DataFormat dataFormat);
         public void handleWrongRequest(WrongRequestException exception);

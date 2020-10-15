@@ -22,7 +22,7 @@ public class TrendingRemote implements TrendingDataSource {
                 .build();
 
         return retrofit.create(TrendingApi.class).getTrending(
-                trendingParam.key)
+                trendingParam.result_count)
                 .flatMap((response)->{
                     switch(response.code()){
                         case 200:

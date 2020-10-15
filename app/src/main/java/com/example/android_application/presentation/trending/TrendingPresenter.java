@@ -3,15 +3,14 @@ package com.example.android_application.presentation.trending;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.Domain.Trending.TrendingUseCase;
-import com.example.android_application.presentation.Contract;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
-public class TrendingPresenter implements Contract.Presenter {
-    private Contract.View view;
+public class TrendingPresenter implements TrendingContract.Presenter {
+    private TrendingContract.View view;
     private TrendingUseCase trendingUseCase;
 
-    public TrendingPresenter(Contract.View view) {
+    public TrendingPresenter(TrendingContract.View view) {
         this.view = view;
         trendingUseCase = new TrendingUseCase();
     }
