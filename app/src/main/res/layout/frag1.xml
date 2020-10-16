@@ -111,12 +111,47 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Bookmark_recycler"
+
+        <FrameLayout
+            android:id="@+id/bookmark_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Bookmark_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+            </androidx.recyclerview.widget.RecyclerView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bookmark_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:text="로그인한 유저만 사용할 수 있습니다."
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal" />
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그인"
+                    android:textSize="15sp"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>
