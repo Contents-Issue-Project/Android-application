@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Bookmark;
+package com.example.android_application.presentation.Home.Bookmark;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Bookmark.BookmarkParam;

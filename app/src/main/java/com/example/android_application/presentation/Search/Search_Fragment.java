@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Fragment;
+package com.example.android_application.presentation.Search;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,14 +11,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.android_application.R;
 
-public class Mypage_Fragment extends Fragment {
+public class Search_Fragment extends Fragment {
 
     private View view;
+
+    public static Search_Fragment newInstance() {
+        return new Search_Fragment();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag3, container, false);
+        view = inflater.inflate(R.layout.frag2, container, false);
 
         return view;
     }

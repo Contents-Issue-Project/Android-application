@@ -2,16 +2,17 @@ package com.example.android_application;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.android_application.presentation.Fragment.Bookmark_Fragment;
-import com.example.android_application.presentation.Fragment.Home_Fragment;
-import com.example.android_application.presentation.Fragment.Mypage_Fragment;
-import com.example.android_application.presentation.Fragment.Search_Fragment;
+import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
+import com.example.android_application.presentation.Home.Home_Fragment;
+import com.example.android_application.presentation.Mypage.Mypage_Fragment;
+import com.example.android_application.presentation.Search.Search_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -82,5 +83,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택
+    }
+
 
 }

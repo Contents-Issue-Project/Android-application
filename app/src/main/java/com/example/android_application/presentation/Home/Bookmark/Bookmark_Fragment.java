@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Fragment;
+package com.example.android_application.presentation.Home.Bookmark;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.Data.Bookmark.BookmarkParam;
-import com.example.android_application.Data.New.NewParam;
 import com.example.android_application.R;
-import com.example.android_application.presentation.Bookmark.BookmarkAdapter;
-import com.example.android_application.presentation.Bookmark.BookmarkContract;
-import com.example.android_application.presentation.Bookmark.BookmarkPresenter;
-import com.example.android_application.presentation.New.NewPresenter;
-import com.example.android_application.presentation.Trending.TrendingAdapter;
 import com.example.android_application.presentation.ItemData;
-import com.example.android_application.presentation.Trending.TrendingContract;
 
 import java.util.ArrayList;
 
@@ -35,6 +28,10 @@ public class Bookmark_Fragment extends Fragment {
     private BookmarkAdapter bookmark_adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
 
+    public static Bookmark_Fragment newInstance() {
+        return new Bookmark_Fragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,7 +41,7 @@ public class Bookmark_Fragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
 
-        top_title = "#BookMark";
+        top_title = "# BookMark";
         textView.setText(top_title);
 
         //list = ItemData.createContactsList(15);

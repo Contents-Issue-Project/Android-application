@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Trending;
+package com.example.android_application.presentation.Home.New;
 
 import android.content.Context;
 import android.util.Log;
@@ -20,12 +20,12 @@ import com.example.android_application.util.WrongRequestException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder> implements TrendingContract.View{
+public class NewAdapter extends RecyclerView.Adapter<NewAdapter.Holder> implements NewContract.View{
 
     private Context context;
     private List<ItemData> list = new ArrayList<>();
 
-    public TrendingAdapter(Context context, List<ItemData> list) {
+    public NewAdapter(Context context, List<ItemData> list) {
         this.context = context;
         this.list = list;
     }
@@ -59,7 +59,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
         for (DataFormat.Item item : dataformat.data) {
             addItem(new ItemData(item.contentId, item.title_kr, item.date, item.type, item.is_single, item.poster, item.top_word));
         }
-        notifyDataSetChanged(); //view 에 띄어주는 부분.
+        notifyDataSetChanged();
     }
 
     @Override
@@ -83,13 +83,13 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
 
         public Holder(View view) {
             super(view);
-
             titleText = (TextView) view.findViewById(R.id.item_title);
             dateText = (TextView) view.findViewById(R.id.item_date);
             typeText = (TextView) view.findViewById(R.id.item_type);
             //genreText = (TextView) view.findViewById(R.id.item_genre);
             posterImg = (ImageView)view.findViewById(R.id.item_poster);
             top_wordText = (TextView) view.findViewById(R.id.top_word);
+
         }
     }
 
@@ -111,5 +111,4 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
 
         Log.e("StudyApp", "onBindViewHolder" + position);
     }
-
 }

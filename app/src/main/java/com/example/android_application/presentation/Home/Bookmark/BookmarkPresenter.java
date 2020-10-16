@@ -1,25 +1,24 @@
-package com.example.android_application.presentation.New;
+package com.example.android_application.presentation.Home.Bookmark;
 
 import com.example.android_application.Data.DataFormat;
-import com.example.android_application.Data.New.NewParam;
-import com.example.android_application.Domain.New.NewUseCase;
-import com.example.android_application.presentation.New.NewContract;
+import com.example.android_application.Data.Bookmark.BookmarkParam;
+import com.example.android_application.Domain.Bookmark.BookmarkUseCase;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
-public class NewPresenter implements  NewContract.Presenter{
-    private NewContract.View view;
-    private NewUseCase newUseCase;
+public class BookmarkPresenter implements BookmarkContract.Presenter {
+    private BookmarkContract.View view;
+    private BookmarkUseCase bookmarkUseCase;
 
-    public NewPresenter(NewContract.View view) {
+    public BookmarkPresenter(BookmarkContract.View view) {
         this.view = view;
-        newUseCase = new NewUseCase();
+        bookmarkUseCase = new BookmarkUseCase();
     }
 
     @Override
-    public void loadNew(NewParam newParam) {
+    public void loadBookmark(BookmarkParam bookmarkParam) {
         //TODO 얘도 사실은 주입해줘야
-        newUseCase.execute(newParam, (response)->{
+        bookmarkUseCase.execute(bookmarkParam, (response)->{
             bindView(response); //callback
         }, (error)->handleError(error));
     }

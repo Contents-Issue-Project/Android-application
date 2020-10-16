@@ -2,7 +2,6 @@ package com.example.android_application.Data.New;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Domain.New.NewDataSource;
-import com.example.android_application.presentation.New.NewContract;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 

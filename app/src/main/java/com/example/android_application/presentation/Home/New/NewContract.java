@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.New;
+package com.example.android_application.presentation.Home.New;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.New.NewParam;
