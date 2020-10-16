@@ -103,6 +103,7 @@
 
             <Button
                 android:id="@+id/bookmark_button"
+                android:visibility="gone"
                 android:layout_width="150sp"
                 android:layout_height="50sp"
                 android:text="@string/more"

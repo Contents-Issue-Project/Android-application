@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, frag3);
                 ft.commit();
                 break;
-            case 3:
+            case 3: // 로그아웃 상태일 때 화면 구별 필요
                 ft.replace(R.id.main_frame, frag4);
                 ft.commit();
                 break;

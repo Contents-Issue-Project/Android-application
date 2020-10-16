@@ -97,8 +97,10 @@ public class Home_Fragment extends Fragment{
             }
         });
 
-        bookmark_login.setVisibility(View.VISIBLE);
-        //bookmark_logout.setVisibility(View.VISIBLE);
+        // 나중에 로그인 확인 부분 추가해야 함 (전체보기 포함)
+        //bookmark_login.setVisibility(View.VISIBLE);
+        //bookmark_button.setVisibility(View.VISIBLE);
+        bookmark_logout.setVisibility(View.VISIBLE);
 
         //trending_list = ItemData.createContactsList(10);
         trending_recyclerView.setHasFixedSize(true);
