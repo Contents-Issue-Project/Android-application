@@ -52,7 +52,7 @@ public class Bookmark_Fragment extends Fragment {
 
         bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
         BookmarkParam bookmark_param = new BookmarkParam();
-        bookmark_param.result_count = 10;
+        bookmark_param.result_count = 30;
         bookmarkPresenter.loadBookmark(bookmark_param);
 
         Log.e("Frag", "BookmarkFragment");

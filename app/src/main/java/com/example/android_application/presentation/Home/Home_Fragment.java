@@ -54,6 +54,7 @@ public class Home_Fragment extends Fragment{
     private Button trending_button;
     private Button new_button;
     private Button bookmark_button;
+    private Button login_button;
     private FrameLayout bookmark_login;
     private FrameLayout bookmark_logout;
 
@@ -73,6 +74,7 @@ public class Home_Fragment extends Fragment{
         trending_button = (Button) view.findViewById(R.id.trending_button);
         new_button = (Button) view.findViewById(R.id.new_button);
         bookmark_button = (Button) view.findViewById(R.id.bookmark_button);
+        login_button = (Button) view.findViewById(R.id.login_button);
         bookmark_login = (FrameLayout) view.findViewById(R.id.bookmark_login);
         bookmark_logout = (FrameLayout) view.findViewById(R.id.bookmark_logout);
 
@@ -94,6 +96,15 @@ public class Home_Fragment extends Fragment{
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).replaceFragment(Bookmark_Fragment.newInstance());
+            }
+        });
+
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bookmark_logout.setVisibility(View.GONE);
+                bookmark_login.setVisibility(View.VISIBLE);
+                bookmark_button.setVisibility(View.VISIBLE);
             }
         });
 

@@ -55,7 +55,7 @@ public class NewAllFragment extends Fragment {
 
         newPresenter = new NewPresenter(new_adapter);
         NewParam new_param = new NewParam();
-        new_param.result_count = 10;
+        new_param.result_count = 30;
         newPresenter.loadNew(new_param);
 
         Log.e("Frag", "NewAllFragment");

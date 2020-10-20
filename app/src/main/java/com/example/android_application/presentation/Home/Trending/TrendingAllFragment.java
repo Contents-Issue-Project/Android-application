@@ -55,7 +55,7 @@ public class TrendingAllFragment extends Fragment {
 
         trendingPresenter = new TrendingPresenter(trending_adapter);
         TrendingParam trending_param = new TrendingParam();
-        trending_param.result_count = 10;
+        trending_param.result_count = 30;
         trendingPresenter.loadTrending(trending_param);
 
         Log.e("Frag", "TrendingAllFragment");
