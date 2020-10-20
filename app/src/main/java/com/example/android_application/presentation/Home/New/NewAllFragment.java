@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.Data.New.NewParam;
 import com.example.android_application.Data.Trending.TrendingParam;
+import com.example.android_application.MainActivity;
 import com.example.android_application.R;
+import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.Trending.TrendingAdapter;
 import com.example.android_application.presentation.Home.Trending.TrendingContract;
 import com.example.android_application.presentation.Home.Trending.TrendingPresenter;
@@ -27,6 +30,7 @@ public class NewAllFragment extends Fragment {
 
     private NewContract.Presenter newPresenter;
     private View view;
+    private ImageButton back_button;
     private String top_title;
     private TextView textView;
     private RecyclerView recyclerView;
@@ -42,11 +46,19 @@ public class NewAllFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4, container, false);
 
+        back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
 
-        top_title = "# New";
+        top_title = "New";
         textView.setText(top_title);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Home_Fragment.newInstance());
+            }
+        });
 
         recyclerView.setHasFixedSize(true);
         new_adapter = new NewAdapter(getActivity(), list);

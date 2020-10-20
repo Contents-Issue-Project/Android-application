@@ -20,6 +20,7 @@ import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.MainActivity;
 import com.example.android_application.R;
 import com.example.android_application.presentation.Home.Bookmark.BookmarkAdapter;
+import com.example.android_application.presentation.Home.Bookmark.BookmarkAllFragment;
 import com.example.android_application.presentation.Home.Bookmark.BookmarkContract;
 import com.example.android_application.presentation.Home.Bookmark.BookmarkPresenter;
 import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
@@ -95,7 +96,7 @@ public class Home_Fragment extends Fragment{
         bookmark_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Bookmark_Fragment.newInstance());
+                ((MainActivity)getActivity()).replaceFragment(BookmarkAllFragment.newInstance());
             }
         });
 

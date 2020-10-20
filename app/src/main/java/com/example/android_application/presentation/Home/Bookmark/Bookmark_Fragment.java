@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class Bookmark_Fragment extends Fragment {
     private BookmarkContract.Presenter bookmarkPresenter;
 
+    private ImageButton back_button;
     private String top_title;
     private TextView textView;
     private RecyclerView recyclerView;
@@ -37,10 +39,11 @@ public class Bookmark_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.frag4, container, false);
 
-
+        back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
 
+        back_button.setVisibility(View.GONE);
         top_title = "# BookMark";
         textView.setText(top_title);
 

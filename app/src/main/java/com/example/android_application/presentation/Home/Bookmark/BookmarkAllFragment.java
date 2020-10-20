@@ -1,5 +1,6 @@
-package com.example.android_application.presentation.Home.Trending;
+package com.example.android_application.presentation.Home.Bookmark;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,43 +16,37 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.Data.Bookmark.BookmarkParam;
-import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.MainActivity;
 import com.example.android_application.R;
-import com.example.android_application.presentation.Home.Bookmark.BookmarkAdapter;
-import com.example.android_application.presentation.Home.Bookmark.BookmarkContract;
-import com.example.android_application.presentation.Home.Bookmark.BookmarkPresenter;
 import com.example.android_application.presentation.Home.Home_Fragment;
-import com.example.android_application.presentation.Home.New.NewAllFragment;
 import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
 
-public class TrendingAllFragment extends Fragment {
+public class BookmarkAllFragment extends Fragment {
+    private BookmarkContract.Presenter bookmarkPresenter;
 
-    private TrendingContract.Presenter trendingPresenter;
-    private View view;
     private ImageButton back_button;
     private String top_title;
     private TextView textView;
     private RecyclerView recyclerView;
-    private TrendingAdapter trending_adapter;
+    private BookmarkAdapter bookmark_adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
 
-    public static TrendingAllFragment newInstance() {
-        return new TrendingAllFragment();
+    public static BookmarkAllFragment newInstance() {
+        return new BookmarkAllFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag4, container, false);
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.frag4, container, false);
 
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
 
-        top_title = "Trending";
+        top_title = "BookMark";
         textView.setText(top_title);
 
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -62,17 +57,16 @@ public class TrendingAllFragment extends Fragment {
         });
 
         recyclerView.setHasFixedSize(true);
-        trending_adapter = new TrendingAdapter(getActivity(), list);
+        bookmark_adapter = new BookmarkAdapter(getActivity(), list);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        recyclerView.setAdapter(trending_adapter);
+        recyclerView.setAdapter(bookmark_adapter);
 
-        trendingPresenter = new TrendingPresenter(trending_adapter);
-        TrendingParam trending_param = new TrendingParam();
-        trending_param.result_count = 30;
-        trendingPresenter.loadTrending(trending_param);
+        bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
+        BookmarkParam bookmark_param = new BookmarkParam();
+        bookmark_param.result_count = 30;
+        bookmarkPresenter.loadBookmark(bookmark_param);
 
-        Log.e("Frag", "TrendingAllFragment");
-
+        Log.e("Frag", "BookmarkFragment");
         return view;
     }
 }
