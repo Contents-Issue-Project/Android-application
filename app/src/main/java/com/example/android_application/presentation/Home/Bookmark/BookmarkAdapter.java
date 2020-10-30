@@ -104,6 +104,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder
 
         Glide.with(context)
                 .load(list.get(position).poster)
+                .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(holder.posterImg);
 

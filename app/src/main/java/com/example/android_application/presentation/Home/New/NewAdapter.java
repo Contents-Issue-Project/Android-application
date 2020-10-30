@@ -106,6 +106,7 @@ public class NewAdapter extends RecyclerView.Adapter<NewAdapter.Holder> implemen
 
         Glide.with(context)
                 .load(list.get(position).poster)
+                .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(holder.posterImg);
 

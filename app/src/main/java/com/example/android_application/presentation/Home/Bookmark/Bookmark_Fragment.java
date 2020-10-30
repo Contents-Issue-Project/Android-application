@@ -1,5 +1,6 @@
 package com.example.android_application.presentation.Home.Bookmark;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +16,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_application.Data.Bookmark.BookmarkParam;
+import com.example.android_application.MainActivity;
 import com.example.android_application.R;
+import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
 
-public class Bookmark_Fragment extends Fragment {
+public class Bookmark_Fragment extends Fragment implements OnBackPressedListener {
     private BookmarkContract.Presenter bookmarkPresenter;
 
     private ImageButton back_button;
@@ -60,5 +63,16 @@ public class Bookmark_Fragment extends Fragment {
 
         Log.e("Frag", "BookmarkFragment");
         return view;
+    }
+
+    @Override
+    public void onBack() {
+        ((MainActivity)getActivity()).finish();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
     }
 }

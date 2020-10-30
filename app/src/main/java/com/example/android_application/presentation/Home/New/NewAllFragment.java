@@ -1,5 +1,6 @@
 package com.example.android_application.presentation.Home.New;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.example.android_application.Data.Trending.TrendingParam;
 import com.example.android_application.MainActivity;
 import com.example.android_application.R;
 import com.example.android_application.presentation.Home.Home_Fragment;
+import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Home.Trending.TrendingAdapter;
 import com.example.android_application.presentation.Home.Trending.TrendingContract;
 import com.example.android_application.presentation.Home.Trending.TrendingPresenter;
@@ -26,7 +28,7 @@ import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
 
-public class NewAllFragment extends Fragment {
+public class NewAllFragment extends Fragment implements OnBackPressedListener {
 
     private NewContract.Presenter newPresenter;
     private View view;
@@ -73,5 +75,16 @@ public class NewAllFragment extends Fragment {
         Log.e("Frag", "NewAllFragment");
 
         return view;
+    }
+
+    @Override
+    public void onBack() {
+        ((MainActivity)getActivity()).replaceFragment(Home_Fragment.newInstance());
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
     }
 }

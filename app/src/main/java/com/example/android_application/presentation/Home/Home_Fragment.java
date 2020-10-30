@@ -1,5 +1,6 @@
 package com.example.android_application.presentation.Home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ import com.example.android_application.presentation.Home.Trending.TrendingPresen
 
 import java.util.ArrayList;
 
-public class Home_Fragment extends Fragment{
+public class Home_Fragment extends Fragment implements OnBackPressedListener{
     private TrendingContract.Presenter trendingPresenter;
     private NewContract.Presenter newPresenter;
     private BookmarkContract.Presenter bookmarkPresenter;
@@ -153,4 +154,14 @@ public class Home_Fragment extends Fragment{
         return view;
     }
 
+    @Override
+    public void onBack() {
+        ((MainActivity)getActivity()).finish();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
+    }
 }

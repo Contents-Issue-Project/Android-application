@@ -11,11 +11,14 @@ import android.view.MenuItem;
 
 import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
 import com.example.android_application.presentation.Home.Home_Fragment;
+import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Mypage.Mypage_Fragment;
 import com.example.android_application.presentation.Search.Search_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private OnBackPressedListener mBackListener;
 
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
     private FragmentManager fm;
@@ -90,5 +93,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택
     }
 
+    public void setOnBackPressedListener(OnBackPressedListener listener) {
+        mBackListener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+            mBackListener.onBack();
+    }
 
 }

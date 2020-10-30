@@ -1,5 +1,6 @@
 package com.example.android_application.presentation.Home.Trending;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,11 +24,12 @@ import com.example.android_application.presentation.Home.Bookmark.BookmarkContra
 import com.example.android_application.presentation.Home.Bookmark.BookmarkPresenter;
 import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.New.NewAllFragment;
+import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.ItemData;
 
 import java.util.ArrayList;
 
-public class TrendingAllFragment extends Fragment {
+public class TrendingAllFragment extends Fragment implements OnBackPressedListener {
 
     private TrendingContract.Presenter trendingPresenter;
     private View view;
@@ -75,4 +77,16 @@ public class TrendingAllFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onBack() {
+        ((MainActivity)getActivity()).replaceFragment(Home_Fragment.newInstance());
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
+    }
+
 }
