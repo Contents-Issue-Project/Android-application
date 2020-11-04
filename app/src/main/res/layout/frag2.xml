@@ -227,7 +227,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="1sp"
-                    android:text="호러"
+                    android:text="@string/horror"
                     android:textSize="13sp"
                     android:layout_weight=".20" />
 
@@ -300,30 +300,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <NumberPicker
-                android:id="@+id/picker_start_year"
+            <Spinner
+                android:id="@+id/start_year"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:layout_margin="10sp"/>
+                android:layout_margin="10sp"
+                android:entries="@array/year_item"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="년   "
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
 
-            <NumberPicker
-                android:id="@+id/picker_start_month"
+            <Spinner
+                android:id="@+id/start_month"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:layout_margin="10sp"/>
+                android:layout_margin="10sp"
+                android:entries="@array/month_item"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 월 부터"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
@@ -332,30 +334,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <NumberPicker
-                android:id="@+id/picker_end_year"
+            <Spinner
+                android:id="@+id/end_year"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:layout_margin="10sp"/>
+                android:layout_margin="10sp"
+                android:entries="@array/year_item"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="년   "
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
 
-            <NumberPicker
-                android:id="@+id/picker_end_month"
+            <Spinner
+                android:id="@+id/end_month"
                 android:layout_width="wrap_content"
                 android:layout_height="30sp"
-                android:layout_margin="10sp"/>
+                android:layout_margin="10sp"
+                android:entries="@array/month_item"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 월 까지"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 

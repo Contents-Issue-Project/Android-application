@@ -1,23 +1,23 @@
 package com.example.android_application.presentation.Search;
 
+
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.SearchView;
-import android.widget.Toolbar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -31,12 +31,13 @@ import java.util.Arrays;
 public class Search_Fragment extends Fragment implements OnBackPressedListener {
 
     private View view;
-    private SearchData searchData;
+
+    private SearchView searchView;
     private String search_word;
     private String type = "all";
     private ArrayList<String> genre= new ArrayList<>();
-    private String start_date;
-    private String end_date;
+    private String start_date = "0000-00-00";
+    private String end_date = "0000-00-00";
 
     private Button type_movie;
     private Button type_drama;
@@ -61,14 +62,22 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
     private Button genre_romance;
     private Button genre_thriller;
     private Button genre_tv;
-    private NumberPicker start_year;
-    private NumberPicker end_year;
-    private NumberPicker start_month;
-    private NumberPicker end_month;
 
     private Boolean[] clicked = new Boolean[19];
     private Boolean type_movie_clicked=false;
     private Boolean type_drama_clicked=false;
+
+    private Spinner start_year;
+    private Spinner end_year;
+    private Spinner start_month;
+    private Spinner end_month;
+    private String startYearString;
+    private int startPosition;
+    private String startMonthString;
+    private String endYearString;
+    private int endPosition;
+    private String endMonthString;
+
 
     public static Search_Fragment newInstance() {
         return new Search_Fragment();
@@ -78,7 +87,7 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2, container, false);
-
+        
         type_movie = (Button) view.findViewById(R.id.type_movie_button);
         type_drama = (Button) view.findViewById(R.id.type_drama_button);
         genre_action = (Button) view.findViewById(R.id.genre_action_button);
@@ -102,10 +111,11 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
         genre_tv = (Button) view.findViewById(R.id.genre_tv_button);
         movie_option1 = (LinearLayout) view.findViewById(R.id.movie_option1);
         movie_option2 = (LinearLayout) view.findViewById(R.id.movie_option2);
-        start_year = (NumberPicker) view.findViewById(R.id.picker_start_year);
-        start_month = (NumberPicker) view.findViewById(R.id.picker_start_month);
-        end_year = (NumberPicker) view.findViewById(R.id.picker_end_year);
-        end_month = (NumberPicker) view.findViewById(R.id.picker_end_month);
+        start_year = (Spinner) view.findViewById(R.id.start_year);
+        start_month = (Spinner) view.findViewById(R.id.start_month);
+        end_year = (Spinner) view.findViewById(R.id.end_year);
+        end_month = (Spinner) view.findViewById(R.id.end_month);
+
 
         Arrays.fill(clicked, false);
 
@@ -483,8 +493,92 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
             }
         });
 
+        start_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    startYearString = (String)parent.getItemAtPosition(position);
+                } else {
+                    startYearString = "0000";
+                }
+                startPosition = position;
+                if (endPosition<position) {
+                    end_year.setSelection(0);
+                    end_month.setSelection(0);
+                    endYearString = "0000";
+                    endMonthString = "00";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        start_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (startYearString.equals("0000")) {
+                    start_month.setSelection(0);
+                    startMonthString = "00";
+                } else {
+                    if (position != 0) {
+                        startMonthString = (String)parent.getItemAtPosition(position);
+                    } else {
+                        startMonthString = "00";
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        end_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position < startPosition) {
+                    Toast.makeText(getActivity(), "시작년도가 더 빨라야 합니다.", Toast.LENGTH_SHORT).show();
+                    end_year.setSelection(0);
+                    endYearString = "0000";
+                } else {
+                    endYearString = (String)parent.getItemAtPosition(position);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        end_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (endYearString.equals("0000")) {
+                    end_month.setSelection(0);
+                    endMonthString = "00";
+                } else {
+                    if (position != 0) {
+                        endMonthString = (String)parent.getItemAtPosition(position);
+                    } else {
+                        endMonthString = "00";
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return view;
     }
+
 
     @Override
     public void onBack() {

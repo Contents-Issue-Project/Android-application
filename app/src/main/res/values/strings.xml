@@ -4,4 +4,5 @@
     <string name="new_string"># New</string>
     <string name="bookmark"># BookMark</string>
     <string name="more">+전체보기</string>
+    <string name="horror">호러</string>
 </resources>
