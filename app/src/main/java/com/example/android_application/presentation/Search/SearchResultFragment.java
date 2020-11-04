@@ -15,10 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android_application.Data.Search.SearchParam;
+import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.MainActivity;
 import com.example.android_application.R;
-import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.ItemData;
 
@@ -65,8 +64,16 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
         recyclerView.setAdapter(search_adapter);
 
         searchPresenter = new SearchPresenter(search_adapter);
-        SearchParam search_param = new SearchParam();
-        search_param.result_count = 30;
+
+        ArrayList<String> genre_ex = new ArrayList<String>();
+        genre_ex.add("action");
+        genre_ex.add("fantasy");
+        ArrayList<String> date_ex = new ArrayList<String>();
+        date_ex.add("2000-01-01");
+        date_ex.add("2020-10-18");
+
+        SearchParam search_param = new SearchParam("movie", "avengers", genre_ex, date_ex );
+        //search_param.result_count = 30;
         searchPresenter.loadSearch(search_param);
 
         Log.e("Frag", "SearchResultFragment");

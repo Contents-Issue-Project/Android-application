@@ -13,7 +13,9 @@ import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragm
 import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Mypage.Mypage_Fragment;
+import com.example.android_application.presentation.Search.ParamDelivery;
 import com.example.android_application.presentation.Search.SearchFragment;
+import com.example.android_application.presentation.Search.SearchResultFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -92,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택
     }
+    /*
+    public void setResult(String str) {
+        SearchResultFragment srf = (SearchResultFragment)getSupportFragmentManager()
+                .findFragmentById(R.id.main_frame);
+        srf.setResult(str);
+    }
+
+     */
+
+
 
     public void setOnBackPressedListener(OnBackPressedListener listener) {
         mBackListener = listener;

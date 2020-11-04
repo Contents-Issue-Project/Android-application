@@ -2,6 +2,7 @@ package com.example.android_application.Data.Search;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Repository;
+import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.Domain.Search.SearchDataSource;
 
 import io.reactivex.Single;

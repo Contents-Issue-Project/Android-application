@@ -1,7 +1,7 @@
 package com.example.android_application.presentation.Search;
 
 import com.example.android_application.Data.DataFormat;
-import com.example.android_application.Data.Search.SearchParam;
+import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.Domain.Search.SearchUseCase;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
@@ -22,6 +22,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             bindView(response); //callback
         }, (error)->handleError(error));
     }
+
 
     @Override
     public void bindView(DataFormat dataFormat) {
