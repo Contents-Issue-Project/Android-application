@@ -11,23 +11,40 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="스마트 검색"
-            android:textSize="40sp"/>
+            android:textSize="30sp"
+            android:layout_marginTop="10sp"/>
 
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:iconifiedByDefault="false"/>
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/searchView"
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:layout_weight=".90"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"/>
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight=".10"
+                android:background="@drawable/ic_baseline_search_24"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/search_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="컨텐츠 유형"
+            android:text="@string/content_type"
             android:textSize="25sp"
             android:layout_marginTop="10sp"/>
 
@@ -40,7 +57,7 @@
                 android:id="@+id/type_movie_button"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="영화"
+                android:text="@string/movie"
                 android:textSize="15sp"
                 android:layout_margin="10sp"/>
 
@@ -48,7 +65,7 @@
                 android:id="@+id/type_drama_button"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="드라마"
+                android:text="@string/drama"
                 android:textSize="15sp"
                 android:layout_margin="10sp"/>
 
@@ -58,7 +75,7 @@
             android:id="@+id/search_genre_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="장르"
+            android:text="@string/genre"
             android:textSize="25sp"
             android:layout_margin="10sp"/>
 
@@ -71,7 +88,7 @@
                 android:id="@+id/genre_action_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="액션"
+                android:text="@string/action"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -80,7 +97,7 @@
                 android:id="@+id/genre_comedy_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="코미디"
+                android:text="@string/comedy"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20" />
@@ -89,7 +106,7 @@
                 android:id="@+id/genre_fantasy_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="판타지"
+                android:text="@string/fantasy"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20" />
@@ -98,7 +115,7 @@
                 android:id="@+id/genre_animation_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="애니메이션"
+                android:text="@string/animation"
                 android:textSize="12sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20" />
@@ -107,7 +124,7 @@
                 android:id="@+id/genre_adventure_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="어드벤처"
+                android:text="@string/adventure"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20" />
@@ -123,7 +140,7 @@
                 android:id="@+id/genre_drama_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="드라마"
+                android:text="@string/drama"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -132,7 +149,7 @@
                 android:id="@+id/genre_crime_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="범죄"
+                android:text="@string/crime"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -141,7 +158,7 @@
                 android:id="@+id/genre_war_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="전쟁"
+                android:text="@string/war"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -150,7 +167,7 @@
                 android:id="@+id/genre_family_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="패밀리"
+                android:text="@string/family"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -159,7 +176,7 @@
                 android:id="@+id/genre_mystery_button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="미스테리"
+                android:text="@string/mystery"
                 android:textSize="13sp"
                 android:layout_margin="1sp"
                 android:layout_weight=".20"/>
@@ -181,7 +198,7 @@
                     android:id="@+id/genre_documentary_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:text="다큐멘터리"
+                    android:text="@string/documentary"
                     android:textSize="12sp"
                     android:layout_margin="1sp"
                     android:layout_weight=".20" />
@@ -190,7 +207,7 @@
                     android:id="@+id/genre_science_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:text="공상과학"
+                    android:text="@string/science"
                     android:textSize="13sp"
                     android:layout_margin="1sp"
                     android:layout_weight=".20" />
@@ -199,7 +216,7 @@
                     android:id="@+id/genre_western_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:text="서부"
+                    android:text="@string/western"
                     android:textSize="13sp"
                     android:layout_margin="1sp"
                     android:layout_weight=".20" />
@@ -218,7 +235,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="1sp"
-                    android:text="역사"
+                    android:text="@string/history"
                     android:textSize="13sp"
                     android:layout_weight=".20" />
 
@@ -247,7 +264,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="1sp"
-                android:text="뮤직"
+                android:text="@string/music"
                 android:textSize="13sp"
                 android:layout_weight=".20" />
 
@@ -256,7 +273,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="1sp"
-                android:text="로맨스"
+                android:text="@string/romance"
                 android:textSize="13sp"
                 android:layout_weight=".20" />
 
@@ -265,7 +282,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="1sp"
-                android:text="스릴러"
+                android:text="@string/thriller"
                 android:textSize="13sp"
                 android:layout_weight=".20"/>
 
@@ -274,7 +291,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="1sp"
-                android:text="TV 영화"
+                android:text="@string/tv"
                 android:textSize="13sp"
                 android:layout_weight=".20" />
 
@@ -291,7 +308,7 @@
             android:id="@+id/search_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="방영일"
+            android:text="@string/release_date"
             android:textSize="25sp"
             android:layout_margin="10sp"/>
 

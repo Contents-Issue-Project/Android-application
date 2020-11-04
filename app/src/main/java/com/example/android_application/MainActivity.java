@@ -13,7 +13,7 @@ import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragm
 import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Mypage.Mypage_Fragment;
-import com.example.android_application.presentation.Search.Search_Fragment;
+import com.example.android_application.presentation.Search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private Home_Fragment frag1;
-    private Search_Fragment frag2;
+    private SearchFragment frag2;
     private Mypage_Fragment frag3;
     private Bookmark_Fragment frag4;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         frag1 = new Home_Fragment();
-        frag2 = new Search_Fragment();
+        frag2 = new SearchFragment();
         frag3 = new Mypage_Fragment();
         frag4 = new Bookmark_Fragment();
 

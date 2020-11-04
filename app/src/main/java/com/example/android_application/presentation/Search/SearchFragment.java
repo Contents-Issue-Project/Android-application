@@ -4,16 +4,17 @@ package com.example.android_application.presentation.Search;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,11 +29,15 @@ import com.example.android_application.presentation.Home.OnBackPressedListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Search_Fragment extends Fragment implements OnBackPressedListener {
+public class SearchFragment extends Fragment implements OnBackPressedListener {
 
     private View view;
+    private SearchData searchData;
 
-    private SearchView searchView;
+    private EditText search;
+    private Button searchButton;
+    //private MenuItem mSearch;
+    //private SearchView searchView;
     private String search_word;
     private String type = "all";
     private ArrayList<String> genre= new ArrayList<>();
@@ -71,23 +76,26 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
     private Spinner end_year;
     private Spinner start_month;
     private Spinner end_month;
-    private String startYearString;
+    private String startYearString="0000";
     private int startPosition;
-    private String startMonthString;
-    private String endYearString;
+    private String startMonthString="00";
+    private String endYearString="0000";
     private int endPosition;
-    private String endMonthString;
+    private String endMonthString="00";
+    private int endMonthInt;
 
 
-    public static Search_Fragment newInstance() {
-        return new Search_Fragment();
+    public static SearchFragment newInstance() {
+        return new SearchFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2, container, false);
-        
+
+        search = (EditText) view.findViewById(R.id.searchView);
+        searchButton = (Button) view.findViewById(R.id.searchButton);
         type_movie = (Button) view.findViewById(R.id.type_movie_button);
         type_drama = (Button) view.findViewById(R.id.type_drama_button);
         genre_action = (Button) view.findViewById(R.id.genre_action_button);
@@ -116,8 +124,74 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
         end_year = (Spinner) view.findViewById(R.id.end_year);
         end_month = (Spinner) view.findViewById(R.id.end_month);
 
-
         Arrays.fill(clicked, false);
+
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                switch(actionId) {
+                    case EditorInfo.IME_ACTION_SEARCH:
+                        searchButton.callOnClick();
+                }
+                return false;
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search_word = search.getText().toString();
+                if (type != "movie") {
+                    genre.remove("history");
+                    genre.remove("horror");
+                    genre.remove("music");
+                    genre.remove("romance");
+                    genre.remove("thriller");
+                    genre.remove("tv");
+                    genre_history.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    genre_horror.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    genre_music.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    genre_romance.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    genre_thriller.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    genre_tv.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    for (int i=13 ; i<=18 ; i++) {
+                        clicked[i] = false;
+                    }
+                }
+                start_date = startYearString+"-"+startMonthString+"-01";
+                switch(endMonthInt) {
+                    case 0:
+                        end_date = endYearString+"-"+endMonthString+"-00";
+                        break;
+                    case 2:
+                        end_date = endYearString+"-"+endMonthString+"-28";
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        end_date = endYearString+"-"+endMonthString+"-30";
+                        break;
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        end_date = endYearString+"-"+endMonthString+"-31";
+                        break;
+                }
+                searchData = new SearchData(type, search_word, genre, start_date, end_date);
+            }
+        });
 
         type_movie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -500,6 +574,8 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
                     startYearString = (String)parent.getItemAtPosition(position);
                 } else {
                     startYearString = "0000";
+                    start_month.setSelection(0);
+                    startMonthString="00";
                 }
                 startPosition = position;
                 if (endPosition<position) {
@@ -568,6 +644,7 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
                         endMonthString = "00";
                     }
                 }
+                endMonthInt = Integer.parseInt(endMonthString);
             }
 
             @Override
@@ -578,7 +655,6 @@ public class Search_Fragment extends Fragment implements OnBackPressedListener {
 
         return view;
     }
-
 
     @Override
     public void onBack() {
