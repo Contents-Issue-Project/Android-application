@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,6 +85,25 @@ public class SearchFragment extends Fragment implements OnBackPressedListener {
     private String endMonthString="00";
     private int endMonthInt;
 
+
+    void genre_click (Button genre_button,  int num, String temp_genre) {
+        genre_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clicked[num]) {
+                    genre_button.getBackground().setColorFilter(ContextCompat.getColor(getActivity(),R.color.buttonUnClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    clicked[num] =false;
+                    genre.remove(temp_genre);
+                } else {
+                    genre_button.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
+                            PorterDuff.Mode.SRC_ATOP);
+                    clicked[num]=true;
+                    genre.add(temp_genre);
+                }
+            }
+        });
+    }
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -243,329 +263,26 @@ public class SearchFragment extends Fragment implements OnBackPressedListener {
             }
         });
 
+        genre_click(genre_action, 0, "action");
+        genre_click(genre_comedy, 1, "comedy");
+        genre_click(genre_fantasy, 2, "fantasy");
+        genre_click(genre_animation, 3, "animation");
+        genre_click(genre_adventure, 4, "adventure");
+        genre_click(genre_drama, 5,"drama");
+        genre_click(genre_crime, 6, "crime");
+        genre_click(genre_war, 7, "war");
+        genre_click(genre_family, 8, "family");
+        genre_click(genre_mystery, 9, "mystery");
+        genre_click(genre_documentary, 10, "documentary");
+        genre_click(genre_science, 11, "sci-fi");
+        genre_click(genre_western, 12, "western");
+        genre_click(genre_history, 13, "history");
+        genre_click(genre_horror, 14, "horror");
+        genre_click(genre_music, 15, "music");
+        genre_click(genre_romance, 16, "romance");
+        genre_click(genre_thriller, 17, "thriller");
+        genre_click(genre_tv, 18, "tv");
 
-        genre_action.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[0]) {
-                    genre_action.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[0] =false;
-                    genre.remove("action");
-                } else {
-                    genre_action.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[0]=true;
-                    genre.add("action");
-                }
-            }
-        });
-
-        genre_comedy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[1]) {
-                    genre_comedy.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[1]=false;
-                    genre.remove("comedy");
-                } else {
-                    genre_comedy.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[1]=true;
-                    genre.add("comedy");
-                }
-            }
-        });
-
-        genre_fantasy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[2]) {
-                    genre_fantasy.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[2]=false;
-                    genre.remove("fantasy");
-                } else {
-                    genre_fantasy.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[2]=true;
-                    genre.add("fantasy");
-                }
-            }
-        });
-
-        genre_animation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[3]) {
-                    genre_animation.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[3]=false;
-                    genre.remove("animation");
-                } else {
-                    genre_animation.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[3]=true;
-                    genre.add("animation");
-                }
-            }
-        });
-
-        genre_adventure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[4]) {
-                    genre_adventure.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[4]=false;
-                    genre.remove("adventure");
-                } else {
-                    genre_adventure.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[4]=true;
-                    genre.add("adventure");
-                }
-            }
-        });
-
-        genre_drama.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[5]) {
-                    genre_drama.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[5]=false;
-                    genre.remove("drama");
-                } else {
-                    genre_drama.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[5]=true;
-                    genre.add("drama");
-                }
-            }
-        });
-
-        genre_crime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[6]) {
-                    genre_crime.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[6]=false;
-                    genre.remove("crime");
-                } else {
-                    genre_crime.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[6]=true;
-                    genre.add("crime");
-                }
-            }
-        });
-
-        genre_war.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[7]) {
-                    genre_war.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[7]=false;
-                    genre.remove("war");
-                } else {
-                    genre_war.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[7]=true;
-                    genre.add("war");
-                }
-            }
-        });
-
-        genre_family.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[8]) {
-                    genre_family.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[8]=false;
-                    genre.remove("family");
-                } else {
-                    genre_family.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[8]=true;
-                    genre.add("family");
-                }
-            }
-        });
-
-        genre_mystery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[9]) {
-                    genre_mystery.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[9]=false;
-                    genre.remove("mystery");
-                } else {
-                    genre_mystery.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[9]=true;
-                    genre.add("mystery");
-                }
-            }
-        });
-
-        genre_documentary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[10]) {
-                    genre_documentary.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[10]=false;
-                    genre.remove("documentary");
-                } else {
-                    genre_documentary.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[10]=true;
-                    genre.add("documentary");
-                }
-            }
-        });
-
-        genre_science.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[11]) {
-                    genre_science.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[11]=false;
-                    genre.remove("science");
-                } else {
-                    genre_science.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[11]=true;
-                    genre.add("science");
-                }
-            }
-        });
-
-        genre_western.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[12]) {
-                    genre_western.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[12]=false;
-                    genre.remove("western");
-                } else {
-                    genre_western.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[12]=true;
-                    genre.add("western");
-                }
-            }
-        });
-
-        genre_history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[13]) {
-                    genre_history.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[13]=false;
-                    genre.remove("history");
-                } else {
-                    genre_history.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[13]=true;
-                    genre.add("history");
-                }
-            }
-        });
-
-        genre_horror.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[14]) {
-                    genre_horror.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[14]=false;
-                    genre.remove("horror");
-                } else {
-                    genre_horror.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[14]=true;
-                    genre.add("horror");
-                }
-            }
-        });
-
-        genre_music.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[15]) {
-                    genre_music.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[15]=false;
-                    genre.remove("music");
-                } else {
-                    genre_music.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[15]=true;
-                    genre.add("music");
-                }
-            }
-        });
-
-        genre_romance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[16]) {
-                    genre_romance.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[16]=false;
-                    genre.remove("romance");
-                } else {
-                    genre_romance.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[16]=true;
-                    genre.add("romance");
-                }
-            }
-        });
-
-        genre_thriller.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[17]) {
-                    genre_thriller.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[17]=false;
-                    genre.remove("thriller");
-                } else {
-                    genre_thriller.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[17]=true;
-                    genre.add("thriller");
-                }
-            }
-        });
-
-        genre_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clicked[18]) {
-                    genre_tv.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[18]=false;
-                    genre.remove("tv");
-                } else {
-                    genre_tv.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonClicked),
-                            PorterDuff.Mode.SRC_ATOP);
-                    clicked[18]=true;
-                    genre.add("tv");
-                }
-            }
-        });
 
         start_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
