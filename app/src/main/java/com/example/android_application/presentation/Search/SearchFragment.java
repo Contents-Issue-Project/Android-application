@@ -23,8 +23,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+<<<<<<< HEAD
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+=======
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+>>>>>>> e590bb74802fa162c1a360c0469315e7dee7d196
 
 import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.MainActivity;
@@ -35,19 +40,17 @@ import com.example.android_application.presentation.Home.Trending.TrendingAllFra
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SearchFragment extends Fragment implements OnBackPressedListener, Serializable{
 
     private View view;
-    private SearchData searchData;
 
     private EditText search;
     private Button searchButton;
-    //private MenuItem mSearch;
-    //private SearchView searchView;
     private String search_word;
     private String type = "all";
-    private ArrayList<String> genre= new ArrayList<>();
+    private ArrayList<String> genre= new ArrayList<String>();
     private String start_date = "0000-00-00";
     private String end_date = "0000-00-00";
 
@@ -187,37 +190,48 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                             PorterDuff.Mode.SRC_ATOP);
                     genre_tv.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
                             PorterDuff.Mode.SRC_ATOP);
-                    for (int i=13 ; i<=18 ; i++) {
+                    for (int i = 13; i <= 18; i++) {
                         clicked[i] = false;
                     }
                 }
-                start_date = startYearString+"-"+startMonthString+"-01";
-                switch(endMonthInt) {
-                    case 0:
-                        end_date = endYearString+"-"+endMonthString+"-00";
-                        break;
-                    case 2:
-                        end_date = endYearString+"-"+endMonthString+"-28";
-                        break;
-                    case 4:
-                    case 6:
-                    case 9:
-                    case 11:
-                        end_date = endYearString+"-"+endMonthString+"-30";
-                        break;
-                    case 1:
-                    case 3:
-                    case 5:
-                    case 7:
-                    case 8:
-                    case 10:
-                    case 12:
-                        end_date = endYearString+"-"+endMonthString+"-31";
-                        break;
+                if (startYearString.equals("00")) {
+                    start_date = null;
+                } else if (startMonthString.equals("00")) {
+                    start_date = start_date +"-01-01";
+                } else {
+                    start_date = startYearString+"-"+startMonthString+"-01";
+                }
+                if (endYearString.equals("00")) {
+                    end_date = null;
+                } else {
+                    switch (endMonthInt) {
+                        case 0:
+                            end_date = endYearString + "-12-31";
+                            break;
+                        case 2:
+                            end_date = endYearString + "-" + endMonthString + "-28";
+                            break;
+                        case 4:
+                        case 6:
+                        case 9:
+                        case 11:
+                            end_date = endYearString + "-" + endMonthString + "-30";
+                            break;
+                        case 1:
+                        case 3:
+                        case 5:
+                        case 7:
+                        case 8:
+                        case 10:
+                        case 12:
+                            end_date = endYearString + "-" + endMonthString + "-31";
+                            break;
+                    }
                 }
                 ArrayList<String> date_range = new ArrayList<String> ();
                 date_range.add(start_date);
                 date_range.add(end_date);
+<<<<<<< HEAD
 
                 Bundle bundle = new Bundle(5);
 
@@ -230,6 +244,21 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                 fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).commit();
                 //((MainActivity)getActivity()).replaceFragment(SearchResultFragment.newInstance());
+=======
+                SearchParam searchParam = new SearchParam(type, search_word, genre, date_range );
+
+                SearchResultFragment fragment = new SearchResultFragment();
+                Bundle bundle = new Bundle();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                bundle.putString("type", type);
+                bundle.putString("searchWord", search_word);
+                //bundle.putSerializable("genre", genre);
+                bundle.putString("startDate", start_date);
+                bundle.putString("endDate", end_date);
+                fragment.setArguments(bundle);
+                transaction.replace(R.id.main_frame, fragment);
+                transaction.commit();
+>>>>>>> e590bb74802fa162c1a360c0469315e7dee7d196
             }
         });
 

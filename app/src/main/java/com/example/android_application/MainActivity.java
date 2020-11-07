@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private SearchFragment frag2;
     private Mypage_Fragment frag3;
     private Bookmark_Fragment frag4;
+    private SearchFragment searchFragment;
+    private SearchResultFragment searchResultFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         frag4 = new Bookmark_Fragment();
 
         setFrag(0); // 첫 프래그먼트 화면 지정
+
     }
 
     // 프래그먼트 교체가 일어나는 실행문.
@@ -94,16 +97,14 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택
     }
+
     /*
     public void setResult(String str) {
         SearchResultFragment srf = (SearchResultFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.main_frame);
         srf.setResult(str);
     }
-
      */
-
-
 
     public void setOnBackPressedListener(OnBackPressedListener listener) {
         mBackListener = listener;
