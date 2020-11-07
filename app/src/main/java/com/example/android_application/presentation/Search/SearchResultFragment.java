@@ -21,9 +21,10 @@ import com.example.android_application.R;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.ItemData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchResultFragment extends Fragment implements OnBackPressedListener {
+public class SearchResultFragment extends Fragment implements OnBackPressedListener, Serializable{
 
     private SearchContract.Presenter searchPresenter;
     private View view;
@@ -65,15 +66,15 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
 
         searchPresenter = new SearchPresenter(search_adapter);
 
-        ArrayList<String> genre_ex = new ArrayList<String>();
-        genre_ex.add("action");
-        genre_ex.add("fantasy");
-        ArrayList<String> date_ex = new ArrayList<String>();
-        date_ex.add("2000-01-01");
-        date_ex.add("2020-10-18");
+        Bundle bundle = this.getArguments();
+        System.out.println("type 값 : " + bundle.getString("type"));
+        SearchData condition  = (SearchData) bundle.getSerializable("search_condition");
 
-        SearchParam search_param = new SearchParam("movie", "avengers", genre_ex, date_ex );
-        //search_param.result_count = 30;
+        ArrayList<String> date_ex = new ArrayList<String>();
+        date_ex.add(condition.start_date);
+        date_ex.add(condition.end_date);
+        SearchParam search_param = new SearchParam(condition.content_type, condition.search_word, condition.sub_type, null); //date_ex);
+
         searchPresenter.loadSearch(search_param);
 
         Log.e("Frag", "SearchResultFragment");

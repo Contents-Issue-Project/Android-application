@@ -1,8 +1,9 @@
 package com.example.android_application.presentation.Search;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchData {
+public class SearchData implements Serializable {
     public String content_type;
     public String search_word;
     public ArrayList<String> sub_type;

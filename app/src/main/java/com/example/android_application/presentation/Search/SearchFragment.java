@@ -23,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.MainActivity;
@@ -30,10 +32,11 @@ import com.example.android_application.R;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Home.Trending.TrendingAllFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SearchFragment extends Fragment implements OnBackPressedListener {
+public class SearchFragment extends Fragment implements OnBackPressedListener, Serializable{
 
     private View view;
     private SearchData searchData;
@@ -215,18 +218,18 @@ public class SearchFragment extends Fragment implements OnBackPressedListener {
                 ArrayList<String> date_range = new ArrayList<String> ();
                 date_range.add(start_date);
                 date_range.add(end_date);
-                SearchParam searchParam = new SearchParam(type, search_word, genre, date_range );
-                /*
-                Fragment fragment = new SearchResultFragment();
+
                 Bundle bundle = new Bundle(5);
+
+                SearchData search_condition = new SearchData(type, search_word, genre, start_date, end_date);
+                bundle.putSerializable("search_condition", search_condition);
+
                 bundle.putString("type", type);
-                bundle.putString("search_word", search_word);
-                bundle.putSerializable("genre", genre);
-                bundle.putString("start_date", start_date);
-                bundle.putString("end_date", end_date);
+
+                SearchResultFragment fragment = new SearchResultFragment();
                 fragment.setArguments(bundle);
-                 */
-                ((MainActivity)getActivity()).replaceFragment(SearchResultFragment.newInstance());
+                getFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).commit();
+                //((MainActivity)getActivity()).replaceFragment(SearchResultFragment.newInstance());
             }
         });
 
