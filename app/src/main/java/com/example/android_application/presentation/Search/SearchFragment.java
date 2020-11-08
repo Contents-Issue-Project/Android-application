@@ -23,13 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-<<<<<<< HEAD
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-=======
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
->>>>>>> e590bb74802fa162c1a360c0469315e7dee7d196
 
 import com.example.android_application.Data.Search.SearchParam.SearchParam;
 import com.example.android_application.MainActivity;
@@ -231,8 +226,6 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                 ArrayList<String> date_range = new ArrayList<String> ();
                 date_range.add(start_date);
                 date_range.add(end_date);
-<<<<<<< HEAD
-
                 Bundle bundle = new Bundle(5);
 
                 SearchData search_condition = new SearchData(type, search_word, genre, start_date, end_date);
@@ -243,22 +236,6 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                 SearchResultFragment fragment = new SearchResultFragment();
                 fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.main_frame, fragment).commit();
-                //((MainActivity)getActivity()).replaceFragment(SearchResultFragment.newInstance());
-=======
-                SearchParam searchParam = new SearchParam(type, search_word, genre, date_range );
-
-                SearchResultFragment fragment = new SearchResultFragment();
-                Bundle bundle = new Bundle();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                bundle.putString("type", type);
-                bundle.putString("searchWord", search_word);
-                //bundle.putSerializable("genre", genre);
-                bundle.putString("startDate", start_date);
-                bundle.putString("endDate", end_date);
-                fragment.setArguments(bundle);
-                transaction.replace(R.id.main_frame, fragment);
-                transaction.commit();
->>>>>>> e590bb74802fa162c1a360c0469315e7dee7d196
             }
         });
 
