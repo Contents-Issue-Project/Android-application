@@ -1,8 +1,9 @@
 package com.example.android_application.Data.Search.SearchParam;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchParam {
+public class SearchParam implements Serializable {
     public String content_type;
     public String search_word;
     public ArrayList<String> sub_type;

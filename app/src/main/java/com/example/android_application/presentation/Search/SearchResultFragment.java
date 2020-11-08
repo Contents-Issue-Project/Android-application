@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +23,7 @@ import com.example.android_application.presentation.ItemData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SearchResultFragment extends Fragment implements OnBackPressedListener, Serializable{
 
@@ -37,13 +36,6 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
     private SearchAdapter search_adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
 
-    private String type;
-    private String search_word;
-    private ArrayList<String> genre = new ArrayList<String>();
-    private ArrayList<String> date_range = new ArrayList<String>();
-    private String start_date;
-    private String end_date;
-
     public static SearchResultFragment newInstance() {
         return new SearchResultFragment();
     }
@@ -51,12 +43,15 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.frag4, container, false);
 
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
+        // ----------------------------------------------------------------------------------
+        top_title = "검색 내용 기입";
+        // ----------------------------------------------------------------------------------
+        textView.setText(top_title);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,24 +59,6 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
                 ((MainActivity)getActivity()).replaceFragment(SearchFragment.newInstance());
             }
         });
-
-        if (getArguments() != null) {
-            type = getArguments().getString("type");
-            search_word = getArguments().getString("searchWord");
-            start_date = getArguments().getString("startDate");
-            end_date = getArguments().getString("endDate");
-            System.out.println("type : " + type);
-            System.out.println("searchWord : " + search_word);
-            System.out.println("genre : " + genre);
-            System.out.println("startDate : " + start_date);
-            System.out.println("endDate : " + end_date);
-        }
-
-        top_title = search_word+" 검색 결과";		// search_word 들어가야 함
-        textView.setText(top_title);
-
-        date_range.add(start_date);
-        date_range.add(end_date);
 
         recyclerView.setHasFixedSize(true);
         search_adapter = new SearchAdapter(getActivity(), list);
@@ -91,26 +68,24 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
         searchPresenter = new SearchPresenter(search_adapter);
 
         Bundle bundle = this.getArguments();
-        System.out.println("type 값 : " + bundle.getString("type"));
-        SearchData condition  = (SearchData) bundle.getSerializable("search_condition");
 
-        ArrayList<String> date_ex = new ArrayList<String>();
-        date_ex.add(condition.start_date);
-        date_ex.add(condition.end_date);
-        SearchParam search_param = new SearchParam(condition.content_type, condition.search_word, condition.sub_type, null); //date_ex);
+        SearchParam condition  = (SearchParam) bundle.getSerializable("search_condition");
+        System.out.println("type : " + condition.content_type);
+        System.out.println("genre : " + condition.sub_type);
+        System.out.println("search_word : " + condition.search_word);
 
-<<<<<<< HEAD
-=======
-        //SearchParam search_param = new SearchParam(type, search_word, genre_ex, date_range );
-        SearchParam search_param = new SearchParam("movie", "avengers", genre_ex, date_ex);
->>>>>>> e590bb74802fa162c1a360c0469315e7dee7d196
-        searchPresenter.loadSearch(search_param);
+        DateRange dt = (DateRange)condition.date_range;
+        if(dt != null)
+            System.out.println("date_range : " + dt.start_date + ", " + dt.end_date);
+
+        //SearchParam search_param = new SearchParam(condition.content_type, condition.search_word, condition.sub_type, null); //date_ex);
+
+        searchPresenter.loadSearch(condition);
 
         Log.e("Frag", "SearchResultFragment");
 
         return view;
     }
-
 
     @Override
     public void onBack() {

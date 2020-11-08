@@ -35,17 +35,19 @@ import com.example.android_application.presentation.Home.Trending.TrendingAllFra
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class SearchFragment extends Fragment implements OnBackPressedListener, Serializable{
 
     private View view;
+    private SearchData searchData;
 
     private EditText search;
     private Button searchButton;
+    //private MenuItem mSearch;
+    //private SearchView searchView;
     private String search_word;
     private String type = "all";
-    private ArrayList<String> genre= new ArrayList<String>();
+    private ArrayList<String> genre= new ArrayList<>();
     private String start_date = "0000-00-00";
     private String end_date = "0000-00-00";
 
@@ -185,19 +187,19 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                             PorterDuff.Mode.SRC_ATOP);
                     genre_tv.getBackground().setColorFilter(ContextCompat.getColor(getActivity(), R.color.buttonUnClicked),
                             PorterDuff.Mode.SRC_ATOP);
-                    for (int i = 13; i <= 18; i++) {
+                    for (int i=13 ; i<=18 ; i++) {
                         clicked[i] = false;
                     }
                 }
-                if (startYearString.equals("00")) {
-                    start_date = null;
+                if (startYearString.equals("0000")) {
+                    start_date = "0000-00-00";
                 } else if (startMonthString.equals("00")) {
-                    start_date = start_date +"-01-01";
+                    start_date = startYearString +"-01-01";
                 } else {
                     start_date = startYearString+"-"+startMonthString+"-01";
                 }
-                if (endYearString.equals("00")) {
-                    end_date = null;
+                if (endYearString.equals("0000")) {
+                    end_date = "0000-00-00";
                 } else {
                     switch (endMonthInt) {
                         case 0:
@@ -223,15 +225,28 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                             break;
                     }
                 }
-                ArrayList<String> date_range = new ArrayList<String> ();
-                date_range.add(start_date);
-                date_range.add(end_date);
+
+                DateRange date_range = new DateRange(start_date, end_date);
+                if(start_date.equals("0000-00-00") && end_date.equals("0000-00-00")) {
+                    date_range = null;
+                }
+                else if(start_date.equals("0000-00-00") && !end_date.equals("0000-00-00")){
+                    date_range.start_date = "2000-01-01";
+                }
+                else if(!start_date.equals("0000-00-00") && end_date.equals("0000-00-00")){
+                    date_range.end_date = "2020-12-31";
+                }
+
+
+                System.out.println("start_date : " + start_date);
+                System.out.println("end_date : " + end_date);
+
+
                 Bundle bundle = new Bundle(5);
 
-                SearchData search_condition = new SearchData(type, search_word, genre, start_date, end_date);
+                SearchParam search_condition = new SearchParam(type, search_word, genre, (Object)date_range);
                 bundle.putSerializable("search_condition", search_condition);
 
-                bundle.putString("type", type);
 
                 SearchResultFragment fragment = new SearchResultFragment();
                 fragment.setArguments(bundle);
@@ -309,16 +324,17 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
         genre_click(genre_thriller, 17, "thriller");
         genre_click(genre_tv, 18, "tv");
 
-
+        // 무언가 선택햇을 때.
         start_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    startYearString = (String)parent.getItemAtPosition(position);
-                } else {
+                if (position == 0) {
                     startYearString = "0000";
                     start_month.setSelection(0);
-                    startMonthString="00";
+                    startMonthString= "00";
+                }
+                else  {
+                    startYearString = (String)parent.getItemAtPosition(position);
                 }
                 startPosition = position;
                 if (endPosition<position) {
@@ -363,7 +379,11 @@ public class SearchFragment extends Fragment implements OnBackPressedListener, S
                     Toast.makeText(getActivity(), "시작년도가 더 빨라야 합니다.", Toast.LENGTH_SHORT).show();
                     end_year.setSelection(0);
                     endYearString = "0000";
-                } else {
+                }
+                else if (position == 0) {
+                    endYearString = "0000";
+                }
+                else {
                     endYearString = (String)parent.getItemAtPosition(position);
                 }
             }
