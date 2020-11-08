@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">Android_application</string>
+    <string name="app_name">당신의 반응이 궁금해</string>
+    <string name="trending"># Trend</string>
+    <string name="new_string"># New</string>
+    <string name="bookmark"># BookMark</string>
+    <string name="more">+전체보기</string>
+    <string name="search">Search</string>
+    <string name="content_type">컨텐츠 유형</string>
+    <string name="movie">영화</string>
+    <string name="drama">드라마</string>
+    <string name="genre">장르</string>
+    <string name="action">액션</string>
+    <string name="comedy">코미디</string>
+    <string name="fantasy">판타지</string>
+    <string name="animation">애니메이션</string>
+    <string name="adventure">어드벤처</string>
+    <string name="crime">범죄</string>
+    <string name="war">전쟁</string>
+    <string name="family">패밀리</string>
+    <string name="mystery">미스테리</string>
+    <string name="documentary">다큐멘터리</string>
+    <string name="science">공상과학</string>
+    <string name="western">서부</string>
+    <string name="history">역사</string>
+    <string name="horror">호러</string>
+    <string name="music">뮤직</string>
+    <string name="romance">로맨스</string>
+    <string name="thriller">스릴러</string>
+    <string name="tv">TV 영화</string>
+    <string name="release_date">방영일</string>
 </resources>
