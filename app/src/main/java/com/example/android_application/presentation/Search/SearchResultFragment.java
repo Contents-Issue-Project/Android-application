@@ -48,10 +48,6 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
         textView = (TextView) view.findViewById(R.id.top_title);
-        // ----------------------------------------------------------------------------------
-        top_title = "검색 내용 기입";
-        // ----------------------------------------------------------------------------------
-        textView.setText(top_title);
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +77,13 @@ public class SearchResultFragment extends Fragment implements OnBackPressedListe
         //SearchParam search_param = new SearchParam(condition.content_type, condition.search_word, condition.sub_type, null); //date_ex);
 
         searchPresenter.loadSearch(condition);
+
+        if (condition.search_word == null) {
+            top_title = "검색 결과";
+        } else {
+            top_title = condition.search_word+" 검색 결과";
+        }
+        textView.setText(top_title);
 
         Log.e("Frag", "SearchResultFragment");
 

@@ -1,6 +1,7 @@
 package com.example.android_application.presentation.Search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
 import com.example.android_application.presentation.ItemData;
+import com.example.android_application.presentation.Contents.ContentsActivity;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
@@ -90,6 +92,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.Holder> im
             //genreText = (TextView) view.findViewById(R.id.item_genre);
             posterImg = (ImageView)view.findViewById(R.id.item_poster);
             top_wordText = (TextView) view.findViewById(R.id.top_word);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(v.getContext(), ContentsActivity.class);
+
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

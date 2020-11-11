@@ -45,10 +45,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder
         return list.size();  // RecyclerView의 size return
     }
 
-    public void addItems(ArrayList<ItemData> items) {
-        list.addAll(items);
-    }
-
 
     public void addItem(ItemData item) {
         list.add(item);
