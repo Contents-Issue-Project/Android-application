@@ -93,15 +93,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.Holder> im
             posterImg = (ImageView)view.findViewById(R.id.item_poster);
             top_wordText = (TextView) view.findViewById(R.id.top_word);
 
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int pos = getAdapterPosition();
                     Context context = v.getContext();
                     Intent intent = new Intent(v.getContext(), ContentsActivity.class);
-
+                    intent.putExtra("contentID", list.get(pos).contentId);
                     context.startActivity(intent);
                 }
             });
+
         }
     }
 
@@ -121,6 +124,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.Holder> im
                 .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(holder.posterImg);
+
 
         Log.e("StudyApp", "onBindViewHolder" + position);
     }

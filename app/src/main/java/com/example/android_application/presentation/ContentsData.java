@@ -1,9 +1,6 @@
 package com.example.android_application.presentation;
 
-import com.example.android_application.Data.Contents.AdditionalData;
 import com.example.android_application.Data.Contents.ContentsFormat;
-import com.example.android_application.Data.Contents.Statistics;
-import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
 
 import java.util.ArrayList;
 

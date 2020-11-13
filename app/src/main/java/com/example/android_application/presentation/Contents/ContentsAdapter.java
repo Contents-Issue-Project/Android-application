@@ -1,3 +1,4 @@
+/*
 package com.example.android_application.presentation.Contents;
 
 import android.content.Context;
@@ -23,7 +24,7 @@ import com.example.android_application.util.WrongRequestException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContentsAdapter implements ContentsContract.View{
+public class ContentsAdapter implements ContentsContract.View {
 
     private Context context;
     private ContentsData contentsData = null;
@@ -40,12 +41,12 @@ public class ContentsAdapter implements ContentsContract.View{
     @Override
     public void setUpContent(ContentsFormat contentsformat) {
         contentsData = new ContentsData(contentsformat.content_id, contentsformat.title_kr, contentsformat.title_en, contentsformat.release_date, contentsformat.content_type, contentsformat.is_single, contentsformat.poster_url, contentsformat.top_words, contentsformat.sub_type, contentsformat.is_hot, contentsformat.single_statistics, contentsformat.type_additional_data, contentsformat.season_count);
-        System.out.println("조예린 바보 : " + contentsformat.title_en + ", " + contentsformat.title_kr);
+        System.out.println("content test : " + contentsformat.title_en + ", " + contentsformat.title_kr);
     }
 
     @Override
     public void handleWrongRequest(WrongRequestException exception) {
-    System.out.println("Wrong Request");
+        System.out.println("Wrong Request");
     }
 
     @Override
@@ -53,4 +54,7 @@ public class ContentsAdapter implements ContentsContract.View{
         System.out.println("Data unavailable");
     }
 
+
 }
+
+ */
