@@ -2,38 +2,41 @@ package com.example.android_application.presentation.Contents;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.example.android_application.Data.Bookmark.BookmarkParam;
 import com.example.android_application.Data.Contents.ContentsFormat;
 import com.example.android_application.Data.Contents.ContentsParam;
 import com.example.android_application.R;
 import com.example.android_application.presentation.ContentsData;
-import com.example.android_application.presentation.Home.Bookmark.BookmarkAdapter;
-import com.example.android_application.presentation.Home.Bookmark.BookmarkPresenter;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
 import java.util.ArrayList;
 
-public class ContentsActivity extends AppCompatActivity implements ContentsContract.View {
+import me.relex.circleindicator.CircleIndicator;
+
+public class ContentsActivity extends FragmentActivity implements ContentsContract.View {
     private ContentsContract.Presenter contentsPresenter;
     //private ContentsAdapter contentsAdapter;
+    FragmentPagerAdapter adapterViewPager;
     private ContentsData contentsData;
     private Context context;
     private ImageView[] imageViews;
+    private ViewPager pager;
+    private int pageSize;
 
     private ImageButton back_button;
     private ImageView poster;
@@ -45,8 +48,8 @@ public class ContentsActivity extends AppCompatActivity implements ContentsContr
     private TextView date;
     private TextView director;
     private TextView casts;
-    private ImageView statistics1;
-    private ImageView statistics2;
+    //private ImageView statistics1;
+   // private ImageView statistics2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +70,26 @@ public class ContentsActivity extends AppCompatActivity implements ContentsContr
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
-        statistics1 = (ImageView)findViewById(R.id.statistics1);
-        statistics2 = (ImageView)findViewById(R.id.statistics2);
+        //statistics1 = (ImageView)findViewById(R.id.statistics1);
+        //statistics2 = (ImageView)findViewById(R.id.statistics2);
 
-        imageViews = new ImageView[]{statistics1, statistics2};
+        pager = findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(3); //3개까지 caching
+
+        MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), 1);
+
+        FirstFragment fragment1 = new FirstFragment();
+        adapter.addItem(fragment1);
+
+        SecondFragment fragment2 = new SecondFragment();
+        adapter.addItem(fragment2);
+
+        ThirdFragment fragment3 = new ThirdFragment();
+        adapter.addItem(fragment3);
+
+        pager.setAdapter(adapter);
+
+        //imageViews = new ImageView[]{statistics1, statistics2};
 
        //contentsAdapter = new ContentsAdapter(context, contentsData);
        //contentsPresenter = new ContentsPresenter(contentsAdapter);
@@ -130,14 +149,15 @@ public class ContentsActivity extends AppCompatActivity implements ContentsContr
         String[] url = new String[statisticsData.size()];
         for (int i = 0; i < url.length; i++) {
             url[i] = "http://static.andang.net" + statisticsData.get(i).url;
-
+/*
             Glide.with(context)
                     .load(url[i])
                     .placeholder(R.drawable.loading_img)
                     .error(R.drawable.error_img)
                     .into(imageViews[i]);
-        }
 
+ */
+        }
 
     }
 }

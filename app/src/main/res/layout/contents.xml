@@ -124,6 +124,21 @@
 
         </RelativeLayout>
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="300sp"/>
+        <!--
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            app:ci_drawable="@drawable/circleindicator"
+            app:ci_height="7dp"
+            app:ci_width="7dp"
+            app:ci_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+        -->
+            <!--
             <FrameLayout
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
@@ -141,6 +156,6 @@
                     android:layout_height="300sp"
                     android:visibility="invisible"/>
             </FrameLayout>
-
+            -->
     </LinearLayout>
 </ScrollView>
