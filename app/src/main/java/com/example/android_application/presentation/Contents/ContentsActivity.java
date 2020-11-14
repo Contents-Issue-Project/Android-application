@@ -30,11 +30,9 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class ContentsActivity extends FragmentActivity implements ContentsContract.View {
     private ContentsContract.Presenter contentsPresenter;
-    //private ContentsAdapter contentsAdapter;
     FragmentPagerAdapter adapterViewPager;
     private ContentsData contentsData;
     private Context context;
-    private ImageView[] imageViews;
     private ViewPager pager;
     private int pageSize;
 
@@ -48,8 +46,6 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private TextView date;
     private TextView director;
     private TextView casts;
-    //private ImageView statistics1;
-   // private ImageView statistics2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,33 +66,12 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
-        //statistics1 = (ImageView)findViewById(R.id.statistics1);
-        //statistics2 = (ImageView)findViewById(R.id.statistics2);
 
-        pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(3); //3개까지 caching
-
-        MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), 1);
-
-        FirstFragment fragment1 = new FirstFragment();
-        adapter.addItem(fragment1);
-
-        SecondFragment fragment2 = new SecondFragment();
-        adapter.addItem(fragment2);
-
-        ThirdFragment fragment3 = new ThirdFragment();
-        adapter.addItem(fragment3);
-
-        pager.setAdapter(adapter);
-
-        //imageViews = new ImageView[]{statistics1, statistics2};
-
-       //contentsAdapter = new ContentsAdapter(context, contentsData);
-       //contentsPresenter = new ContentsPresenter(contentsAdapter);
         contentsPresenter = new ContentsPresenter(this);
         ContentsParam contents_param = new ContentsParam();
         contents_param.content_id = contentId;
         contentsPresenter.loadContents(contents_param);
+
 
     }
 
@@ -106,6 +81,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         System.out.println("content test : " + contentsformat.title_en + ", " + contentsformat.title_kr);
 
         setUp(contentsData);
+        pageSetUp(contentsData);
     }
 
     @Override
@@ -144,20 +120,38 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         director.setText(additionalData.director);
         casts.setText(additionalData.casts.toString());
 
-        // 통계 이미지
+    }
+
+    public void pageSetUp(ContentsData contentsData) {
         ArrayList<ContentsFormat.Statistics_data> statisticsData = contentsData.single_statistics;
+        pageSize = statisticsData.size();
         String[] url = new String[statisticsData.size()];
         for (int i = 0; i < url.length; i++) {
             url[i] = "http://static.andang.net" + statisticsData.get(i).url;
-/*
-            Glide.with(context)
-                    .load(url[i])
-                    .placeholder(R.drawable.loading_img)
-                    .error(R.drawable.error_img)
-                    .into(imageViews[i]);
-
- */
         }
 
+        pager = findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(pageSize);
+
+        MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), 1);
+
+        if (url.length >= 1) {
+            StatisticsFragment statisticsFragment1 = new StatisticsFragment(url[0]);
+            adapter.addItem(statisticsFragment1);
+        }
+        if (url.length>=2) {
+            StatisticsFragment statisticsFragment2 = new StatisticsFragment(url[1]);
+            adapter.addItem(statisticsFragment2);
+        }
+        if (url.length>=3) {
+            StatisticsFragment statisticsFragment3 = new StatisticsFragment(url[2]);
+            adapter.addItem(statisticsFragment3);
+        }
+
+        //int layout_id = R.layout.stat_img1;
+        //int imageView_id = R.id.statistics1;
+        //StatisticsFragment statisticsFragment = new StatisticsFragment(layout_id, imageView_id);
+        //adapter.addItem(statisticsFragment);
+        pager.setAdapter(adapter);
     }
 }

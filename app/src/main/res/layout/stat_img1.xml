@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/statistics1"
+        android:id="@+id/statistics"
         android:layout_width="350sp"
         android:layout_height="300sp" />
 
