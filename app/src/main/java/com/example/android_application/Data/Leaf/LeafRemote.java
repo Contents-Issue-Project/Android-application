@@ -15,7 +15,7 @@ public class LeafRemote implements LeafDataSource {
     public Single<LeafFormat> getLeaf(LeafParam leafParam) {
         //TODO 재사용 불가능?
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.cakes.com/")
+                .baseUrl("https://api.andang.net/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

@@ -18,7 +18,7 @@ public class StatisticsFragment extends Fragment {
     ImageView imageView;
     String url;
 
-    StatisticsFragment(String url) {
+    public StatisticsFragment(String url) {
         this.url = url;
     }
 

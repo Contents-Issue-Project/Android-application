@@ -9,5 +9,5 @@ public interface LeafApi {
     @GET("/v1/contents/{content_id}/season/{season_number}/episode/{episode_number}")
     Single<Response<LeafFormat>> getLeaf(@Path("content_id") String content_id,
                                          @Path("season_number") int season_number,
-                                         @Path("episode number") int episode_number);
+                                         @Path("episode_number") int episode_number);
 }

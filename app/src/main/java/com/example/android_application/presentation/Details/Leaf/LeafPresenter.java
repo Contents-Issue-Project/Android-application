@@ -19,6 +19,7 @@ public class LeafPresenter implements LeafContract.Presenter {
     @Override
     public void loadLeaf(LeafParam leafParam) {
         //TODO 얘도 사실은 주입해줘야
+       System.out.println("쌉가능");
         leafUseCase.execute(leafParam, (response)->{
             bindView(response); //callback
         }, (error)->handleError(error));
