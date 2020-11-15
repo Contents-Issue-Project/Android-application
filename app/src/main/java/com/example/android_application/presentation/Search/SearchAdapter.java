@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
 import com.example.android_application.presentation.ItemData;
-import com.example.android_application.presentation.Contents.ContentsActivity;
+import com.example.android_application.presentation.Details.ContentsActivity;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 

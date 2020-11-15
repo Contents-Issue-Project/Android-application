@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Contents;
+package com.example.android_application.presentation.Details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

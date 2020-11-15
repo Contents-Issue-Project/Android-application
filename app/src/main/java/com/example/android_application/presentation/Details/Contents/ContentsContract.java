@@ -1,4 +1,4 @@
-package com.example.android_application.presentation.Contents;
+package com.example.android_application.presentation.Details.Contents;
 
 
 import com.example.android_application.Data.Contents.ContentsFormat;
