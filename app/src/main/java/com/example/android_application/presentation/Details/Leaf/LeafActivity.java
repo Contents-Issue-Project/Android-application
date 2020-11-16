@@ -34,6 +34,8 @@ import com.example.android_application.util.WrongRequestException;
 
 import java.util.ArrayList;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class LeafActivity extends AppCompatActivity implements LeafContract.View, ContentsContract.View{
 
     private ContentsContract.Presenter contentsPresenter;
@@ -47,11 +49,11 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     private Context context;
     private ViewPager pager;
     private int pageSize;
+    private CircleIndicator indicator;
 
     private ImageButton back_button;
     private ImageView poster;
     private ImageView isHot;
-    private ImageView mood;
     private TextView title;
     private TextView season;
     private ImageView bookmark;
@@ -77,13 +79,20 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
         back_button = (ImageButton)findViewById(R.id.content_backButton);
         poster = (ImageView)findViewById(R.id.poster_img);
         isHot = (ImageView)findViewById(R.id.isHot);
-        mood = (ImageView)findViewById(R.id.mood_img);
         title = (TextView)findViewById(R.id.title_text);
         season = (TextView)findViewById(R.id.season_text);
         bookmark = (ImageView)findViewById(R.id.bookmark_img);
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
+        indicator = (CircleIndicator)findViewById(R.id.indicator);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // Content
         contentsPresenter = new ContentsPresenter(this);
@@ -193,5 +202,6 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
             adapter.addItem(statisticsFragment3);
         }
         pager.setAdapter(adapter);
+        indicator.setViewPager(pager);
     }
 }

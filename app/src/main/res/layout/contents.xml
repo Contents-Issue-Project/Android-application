@@ -38,10 +38,11 @@
                 android:id="@+id/bookmark_img"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:layout_below="@id/poster_img"
-                android:layout_margin="5sp"
+                android:layout_below="@id/title_text"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15sp"
                 android:background="#00ffff"/>
-
+    <!--
             <ImageView
                 android:id="@+id/mood_img"
                 android:layout_width="100sp"
@@ -49,7 +50,7 @@
                 android:layout_below="@id/poster_img"
                 android:layout_toEndOf="@id/bookmark_img"
                 android:background="#00ff00" />
-
+    -->
             <TextView
                 android:id="@+id/title_text"
                 android:layout_width="wrap_content"
@@ -134,15 +135,27 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="300sp"/>
+            android:layout_height="250sp"/>
+
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            app:ci_drawable="@drawable/circleindicator"
+            app:ci_height="7dp"
+            app:ci_width="7dp"
+            app:ci_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"/>
 
         <Spinner
             android:id="@+id/season_spinner"
-            android:layout_width="60sp"
+            android:layout_width="150sp"
             android:layout_height="30sp"
             android:layout_margin="10sp"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:visibility="gone"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"

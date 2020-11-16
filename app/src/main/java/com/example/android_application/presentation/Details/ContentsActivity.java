@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
@@ -35,6 +38,9 @@ import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class ContentsActivity extends FragmentActivity implements ContentsContract.View, SeasonContract.View {
     private ContentsContract.Presenter contentsPresenter;
@@ -50,18 +56,19 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private ViewPager pager;
     private int pageSize;
     private int spinner_position = 1;
+    private Spinner spinner;
+    List<String> spinnerArray = new ArrayList<String>();
+    private CircleIndicator indicator;
 
     private ImageButton back_button;
     private ImageView poster;
     private ImageView isHot;
-    private ImageView mood;
     private TextView title;
     private TextView season;
     private ImageView bookmark;
     private TextView date;
     private TextView director;
     private TextView casts;
-
 
     Button[] episode;
 
@@ -89,13 +96,21 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         back_button = (ImageButton)findViewById(R.id.content_backButton);
         poster = (ImageView)findViewById(R.id.poster_img);
         isHot = (ImageView)findViewById(R.id.isHot);
-        mood = (ImageView)findViewById(R.id.mood_img);
         title = (TextView)findViewById(R.id.title_text);
         season = (TextView)findViewById(R.id.season_text);
         bookmark = (ImageView)findViewById(R.id.bookmark_img);
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
+        spinner = (Spinner)findViewById(R.id.season_spinner);
+        indicator = (CircleIndicator)findViewById(R.id.indicator);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         for(int i = 0; i<16; i++) {
             episode_click(episode[i], contentId, i+1);
@@ -178,16 +193,37 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
 
         // 제목, 시즌정보, 출시일
         title.setText(contentsData.title_kr);
-        if(contentsData.is_single == false) {
+        if(!contentsData.is_single) {
+            spinner.setVisibility(View.VISIBLE);
             season.setText("시즌1");
-            /*
-            Spinner (드롭다운 생성부분) [ SeasonCount 적용]
 
+            for(int i=0 ; i<contentsData.season_count ; i++) {
+                String seasonString = "시즌"+Integer.toString(i+1);
+                spinnerArray.add(seasonString);
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, spinnerArray);
 
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-             */
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    spinner_position = position+1;
+                    SeasonParam season_param = new SeasonParam();
+                    season_param.content_id = contentsData.content_id;
+                    season_param.season_number = spinner_position;
+                    seasonPresenter.loadSeason(season_param);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         } else {
-            season.setVisibility(View.INVISIBLE);
+            season.setVisibility(View.GONE);
         }
         date.setText(contentsData.release_date);
 
@@ -241,6 +277,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
             adapter.addItem(statisticsFragment3);
         }
         pager.setAdapter(adapter);
+        indicator.setViewPager(pager);
     }
 
     // Season 일 경우의 pageSetup
@@ -270,5 +307,6 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
             adapter.addItem(statisticsFragment3);
         }
         pager.setAdapter(adapter);
+        indicator.setViewPager(pager);
     }
 }
