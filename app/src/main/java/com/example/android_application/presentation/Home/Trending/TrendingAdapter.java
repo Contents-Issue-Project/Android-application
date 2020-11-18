@@ -1,6 +1,7 @@
 package com.example.android_application.presentation.Home.Trending;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.R;
+import com.example.android_application.presentation.Details.ContentsActivity;
 import com.example.android_application.presentation.ItemData;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
@@ -90,6 +92,17 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Holder
             //genreText = (TextView) view.findViewById(R.id.item_genre);
             posterImg = (ImageView)view.findViewById(R.id.item_poster);
             top_wordText = (TextView) view.findViewById(R.id.top_word);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Context context = v.getContext();
+                    Intent intent = new Intent(v.getContext(), ContentsActivity.class);
+                    intent.putExtra("contentID", list.get(pos).contentId);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
