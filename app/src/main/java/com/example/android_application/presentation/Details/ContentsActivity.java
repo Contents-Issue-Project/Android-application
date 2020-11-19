@@ -2,6 +2,7 @@ package com.example.android_application.presentation.Details;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import com.example.android_application.Data.Leaf.LeafFormat;
 import com.example.android_application.Data.Leaf.LeafParam;
 import com.example.android_application.Data.Season.SeasonFormat;
 import com.example.android_application.Data.Season.SeasonParam;
+import com.example.android_application.Marked;
 import com.example.android_application.R;
 import com.example.android_application.presentation.ContentsData;
 import com.example.android_application.presentation.Details.Contents.ContentsContract;
@@ -65,11 +67,12 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private ImageView isHot;
     private TextView title;
     private TextView season;
-    private ImageView bookmark;
+    private ImageButton bookmark;
     private TextView date;
     private TextView director;
     private TextView casts;
-
+    public Marked mark = Marked.getInstance();
+    private ArrayList<String> marked_content_id;
     Button[] episode;
 
 
@@ -78,10 +81,37 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contents);
+        marked_content_id = mark.getData();
 
         context = getApplicationContext();
         Intent intent = getIntent();
         String contentId = intent.getExtras().getString("contentID");
+
+
+        back_button = (ImageButton)findViewById(R.id.content_backButton);
+        poster = (ImageView)findViewById(R.id.poster_img);
+        isHot = (ImageView)findViewById(R.id.isHot);
+        title = (TextView)findViewById(R.id.title_text);
+        season = (TextView)findViewById(R.id.season_text);
+        bookmark = (ImageButton)findViewById(R.id.bookmark_img);
+        date = (TextView)findViewById(R.id.date_text);
+        director = (TextView)findViewById(R.id.director_text);
+        casts = (TextView)findViewById(R.id.casts_text);
+        spinner = (Spinner)findViewById(R.id.season_spinner);
+        indicator = (CircleIndicator)findViewById(R.id.indicator);
+
+        System.out.println("Current content id : " + contentId);
+        for(String a : marked_content_id){
+            System.out.println("content id in Content activity : " + a);
+        }
+
+        for(String a : marked_content_id){
+            if(a.equals(contentId)){
+                bookmark.setImageResource(R.drawable.ic_baseline_bookmark_24);
+                break;
+            }
+        }
+
 
         episode = new Button[]{(Button) findViewById(R.id.episode1)
                 , (Button) findViewById(R.id.episode2), (Button) findViewById(R.id.episode3)
@@ -93,17 +123,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
                 , (Button) findViewById(R.id.episode14), (Button) findViewById(R.id.episode15)
                 , (Button) findViewById(R.id.episode16) };
 
-        back_button = (ImageButton)findViewById(R.id.content_backButton);
-        poster = (ImageView)findViewById(R.id.poster_img);
-        isHot = (ImageView)findViewById(R.id.isHot);
-        title = (TextView)findViewById(R.id.title_text);
-        season = (TextView)findViewById(R.id.season_text);
-        bookmark = (ImageView)findViewById(R.id.bookmark_img);
-        date = (TextView)findViewById(R.id.date_text);
-        director = (TextView)findViewById(R.id.director_text);
-        casts = (TextView)findViewById(R.id.casts_text);
-        spinner = (Spinner)findViewById(R.id.season_spinner);
-        indicator = (CircleIndicator)findViewById(R.id.indicator);
+
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +140,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         contentsPresenter = new ContentsPresenter(this);
         ContentsParam contents_param = new ContentsParam();
         contents_param.content_id = contentId;
+
 
         // Season
         seasonPresenter = new SeasonPresenter(this);

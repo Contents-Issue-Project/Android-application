@@ -2,6 +2,7 @@ package com.example.android_application.presentation.Home.Bookmark;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.android_application.Data.DataFormat;
+import com.example.android_application.Marked;
 import com.example.android_application.R;
 import com.example.android_application.presentation.Details.ContentsActivity;
 import com.example.android_application.presentation.ItemData;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder> implements BookmarkContract.View{
 
+    Marked mark = Marked.getInstance();
     private Context context;
     private List<ItemData> list = new ArrayList<>();
-
+    private ArrayList<String> mark_content_id = new ArrayList<>();
     public BookmarkAdapter(Context context, List<ItemData> list) {
         this.context = context;
         this.list = list;
@@ -54,8 +58,14 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder
 
     @Override
     public void setUpContent(DataFormat dataformat) {
+
         for (DataFormat.Item item : dataformat.data) {
             addItem(new ItemData(item.contentId, item.title_kr, item.date, item.type, item.is_single, item.poster, item.top_word));
+            mark_content_id.add(item.contentId);
+        }
+        mark.setData(mark_content_id);
+        for(String a : mark.getData()){
+            System.out.println("content id in Bookmark Adapter : " + a);
         }
         notifyDataSetChanged();
     }

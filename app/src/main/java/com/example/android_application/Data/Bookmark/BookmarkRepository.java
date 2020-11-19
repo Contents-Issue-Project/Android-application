@@ -2,9 +2,7 @@ package com.example.android_application.Data.Bookmark;
 
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Data.Repository;
-import com.example.android_application.Data.Bookmark.BookmarkParam;
-import com.example.android_application.Data.Bookmark.BookmarkRemote;
-import com.example.android_application.Data.Bookmark.BookmarkRepository;
+import com.example.android_application.Data.Bookmark.BookmarkRemote.BookmarkRemote;
 import com.example.android_application.Domain.Bookmark.BookmarkDataSource;
 
 import io.reactivex.Single;

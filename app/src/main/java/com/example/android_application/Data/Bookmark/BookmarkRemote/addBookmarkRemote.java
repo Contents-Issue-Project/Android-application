@@ -1,5 +1,7 @@
-package com.example.android_application.Data.Bookmark;
+package com.example.android_application.Data.Bookmark.BookmarkRemote;
 
+import com.example.android_application.Data.Bookmark.BookmarkApi.BookmarkApi;
+import com.example.android_application.Data.Bookmark.BookmarkParam;
 import com.example.android_application.Data.DataFormat;
 import com.example.android_application.Domain.Bookmark.BookmarkDataSource;
 import com.example.android_application.util.DataUnavailableException;
@@ -10,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BookmarkRemote implements BookmarkDataSource {
+public class addBookmarkRemote implements BookmarkDataSource {
 
     @Override
     public Single<DataFormat> getBookmark(BookmarkParam bookmarkParam) {
@@ -22,7 +24,7 @@ public class BookmarkRemote implements BookmarkDataSource {
                 .build();
 
         return retrofit.create(BookmarkApi.class).getBookmark(
-                bookmarkParam.result_count)
+                bookmarkParam.Authentication, bookmarkParam.result_number)
                 .flatMap((response)->{
                     switch(response.code()){
                         case 200:

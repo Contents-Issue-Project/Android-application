@@ -65,7 +65,8 @@ public class BookmarkAllFragment extends Fragment implements OnBackPressedListen
 
         bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
         BookmarkParam bookmark_param = new BookmarkParam();
-        bookmark_param.result_count = 30;
+        bookmark_param.Authentication = "abcd";
+        bookmark_param.result_number = 0;
         bookmarkPresenter.loadBookmark(bookmark_param);
 
         Log.e("Frag", "BookmarkFragment");

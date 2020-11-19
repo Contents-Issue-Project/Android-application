@@ -6,6 +6,9 @@ import com.example.android_application.Domain.Bookmark.BookmarkUseCase;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class BookmarkPresenter implements BookmarkContract.Presenter {
     private BookmarkContract.View view;
     private BookmarkUseCase bookmarkUseCase;

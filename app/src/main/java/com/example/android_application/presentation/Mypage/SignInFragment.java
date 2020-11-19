@@ -60,7 +60,7 @@ public class SignInFragment extends Fragment implements OnBackPressedListener, V
         name = (TextView) view.findViewById(R.id.name);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.server_client_id_GYJ))
+                .requestIdToken(getString(R.string.server_client_id_JYS))
                 .requestEmail()
                 .requestProfile()
                 .build();

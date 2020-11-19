@@ -32,6 +32,7 @@ public class Bookmark_Fragment extends Fragment implements OnBackPressedListener
     private RecyclerView recyclerView;
     private BookmarkAdapter bookmark_adapter;
     private ArrayList<ItemData> list = new ArrayList<>();
+    private ArrayList<String> mark_content_id = new ArrayList<>();
 
     public static Bookmark_Fragment newInstance() {
         return new Bookmark_Fragment();
@@ -58,7 +59,8 @@ public class Bookmark_Fragment extends Fragment implements OnBackPressedListener
 
         bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
         BookmarkParam bookmark_param = new BookmarkParam();
-        bookmark_param.result_count = 30;
+        bookmark_param.Authentication = "abcd";
+        bookmark_param.result_number = 0;
         bookmarkPresenter.loadBookmark(bookmark_param);
 
         Log.e("Frag", "BookmarkFragment");

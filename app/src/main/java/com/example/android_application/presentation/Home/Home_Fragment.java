@@ -124,6 +124,17 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
             bookmark_logout.setVisibility(View.VISIBLE);
         }
 
+        bookmark_recyclerView.setHasFixedSize(true);
+        bookmark_adapter = new BookmarkAdapter(getActivity(), bookmark_list);
+        bookmark_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        bookmark_recyclerView.setAdapter(bookmark_adapter);
+
+        bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
+        BookmarkParam bookmark_param = new BookmarkParam();
+        bookmark_param.Authentication = "abcd";
+        bookmark_param.result_number = 0;
+        bookmarkPresenter.loadBookmark(bookmark_param);
+
         //trending_list = ItemData.createContactsList(10);
         trending_recyclerView.setHasFixedSize(true);
         trending_adapter = new TrendingAdapter(getActivity(), trending_list);
@@ -147,15 +158,8 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
         new_param.result_count = 10;
         newPresenter.loadNew(new_param);
 
-        bookmark_recyclerView.setHasFixedSize(true);
-        bookmark_adapter = new BookmarkAdapter(getActivity(), bookmark_list);
-        bookmark_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        bookmark_recyclerView.setAdapter(bookmark_adapter);
 
-        bookmarkPresenter = new BookmarkPresenter(bookmark_adapter);
-        BookmarkParam bookmark_param = new BookmarkParam();
-        bookmark_param.result_count = 10;
-        bookmarkPresenter.loadBookmark(bookmark_param);
+
 
 
         Log.e("Frag", "HomeFragment");
