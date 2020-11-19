@@ -103,12 +103,12 @@
 
             <Button
                 android:id="@+id/bookmark_button"
-                android:visibility="gone"
                 android:layout_width="150sp"
                 android:layout_height="50sp"
                 android:text="@string/more"
                 android:layout_gravity="end"
-                android:background="#00ff0000"/>
+                android:background="#00ff0000"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -148,7 +148,7 @@
                     android:id="@+id/login_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="로그인"
+                    android:text="마이페이지로 이동"
                     android:textSize="15sp"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>

@@ -41,7 +41,7 @@
                 android:layout_below="@id/title_text"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15sp"
-                android:background="#00ffff"/>
+                android:src="@drawable/ic_baseline_bookmark_border_24"/>
     <!--
             <ImageView
                 android:id="@+id/mood_img"
@@ -91,8 +91,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:layout_below="@id/season_text"
-                android:layout_toEndOf="@id/dateText"
-                android:text="출시일 블라블라"/>
+                android:layout_toEndOf="@id/dateText" />
 
             <TextView
                 android:id="@+id/directorText"
@@ -109,8 +108,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:layout_below="@id/dateText"
-                android:layout_toEndOf="@id/directorText"
-                android:text="감독 블라블라"/>
+                android:layout_toEndOf="@id/directorText" />
 
             <TextView
                 android:id="@+id/castsText"
@@ -127,8 +125,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:layout_below="@id/directorText"
-                android:layout_toEndOf="@id/castsText"
-                android:text="등장인물 블라블라솰라솰라"/>
+                android:layout_toEndOf="@id/castsText" />
 
         </RelativeLayout>
 

@@ -24,7 +24,6 @@ import com.example.android_application.presentation.Home.Bookmark.BookmarkAdapte
 import com.example.android_application.presentation.Home.Bookmark.BookmarkAllFragment;
 import com.example.android_application.presentation.Home.Bookmark.BookmarkContract;
 import com.example.android_application.presentation.Home.Bookmark.BookmarkPresenter;
-import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
 import com.example.android_application.presentation.Home.New.NewAdapter;
 import com.example.android_application.presentation.Home.New.NewAllFragment;
 import com.example.android_application.presentation.Home.New.NewContract;
@@ -34,6 +33,11 @@ import com.example.android_application.presentation.Home.Trending.TrendingContra
 import com.example.android_application.presentation.Home.Trending.TrendingAdapter;
 import com.example.android_application.presentation.ItemData;
 import com.example.android_application.presentation.Home.Trending.TrendingPresenter;
+import com.example.android_application.presentation.Mypage.SignInFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
@@ -41,6 +45,7 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
     private TrendingContract.Presenter trendingPresenter;
     private NewContract.Presenter newPresenter;
     private BookmarkContract.Presenter bookmarkPresenter;
+    private GoogleSignInClient mGoogleSignInClient;
 
     // private View view;
 
@@ -104,16 +109,20 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bookmark_logout.setVisibility(View.GONE);
-                bookmark_login.setVisibility(View.VISIBLE);
-                bookmark_button.setVisibility(View.VISIBLE);
+                ((MainActivity)getActivity()).replaceFragment(SignInFragment.newInstance());
             }
         });
 
-        // 나중에 로그인 확인 부분 추가해야 함 (전체보기 포함)
-        //bookmark_login.setVisibility(View.VISIBLE);
-        //bookmark_button.setVisibility(View.VISIBLE);
-        bookmark_logout.setVisibility(View.VISIBLE);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        if (account != null) {
+            bookmark_button.setVisibility(View.VISIBLE);
+            bookmark_login.setVisibility(View.VISIBLE);
+            bookmark_logout.setVisibility(View.GONE);
+        } else {
+            bookmark_button.setVisibility(View.GONE);
+            bookmark_login.setVisibility(View.GONE);
+            bookmark_logout.setVisibility(View.VISIBLE);
+        }
 
         //trending_list = ItemData.createContactsList(10);
         trending_recyclerView.setHasFixedSize(true);

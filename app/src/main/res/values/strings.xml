@@ -28,4 +28,6 @@
     <string name="thriller">스릴러</string>
     <string name="tv">TV 영화</string>
     <string name="release_date">방영일</string>
+    <string name="server_client_id_GYJ">313738953235-o6majqh9fko0retah8ooce9tg4ek0um5.apps.googleusercontent.com</string>
+    <string name="server_client_id_JYS">643976809022-i2n67m641o3d0cubnof995tclh0q8v7d.apps.googleusercontent.com</string>
 </resources>

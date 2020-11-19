@@ -12,8 +12,7 @@ import android.view.MenuItem;
 import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
 import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
-import com.example.android_application.presentation.Mypage.Mypage_Fragment;
-import com.example.android_application.presentation.Search.ParamDelivery;
+import com.example.android_application.presentation.Mypage.SignInFragment;
 import com.example.android_application.presentation.Search.SearchFragment;
 import com.example.android_application.presentation.Search.SearchResultFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private Home_Fragment frag1;
     private SearchFragment frag2;
-    private Mypage_Fragment frag3;
+    private SignInFragment frag3;
     private Bookmark_Fragment frag4;
     private SearchFragment searchFragment;
     private SearchResultFragment searchResultFragment;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
         frag1 = new Home_Fragment();
         frag2 = new SearchFragment();
-        frag3 = new Mypage_Fragment();
+        frag3 = new SignInFragment();
         frag4 = new Bookmark_Fragment();
 
         setFrag(0); // 첫 프래그먼트 화면 지정
