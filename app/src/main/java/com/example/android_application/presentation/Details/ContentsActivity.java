@@ -61,6 +61,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private Spinner spinner;
     List<String> spinnerArray = new ArrayList<String>();
     private CircleIndicator indicator;
+    private int rating_round;
 
     private ImageButton back_button;
     private ImageView poster;
@@ -68,6 +69,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private TextView title;
     private TextView season;
     private ImageView bookmark;
+    private ImageView rating;
     private TextView date;
     private TextView director;
     private TextView casts;
@@ -95,6 +97,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         title = (TextView)findViewById(R.id.title_text);
         season = (TextView)findViewById(R.id.season_text);
         bookmark = (ImageView)findViewById(R.id.bookmark_img);
+        rating = (ImageView)findViewById(R.id.rating_img);
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
@@ -168,6 +171,8 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     @Override
     public void setUpContent(ContentsFormat contentsformat) {
         contentsData = new ContentsData(contentsformat.content_id, contentsformat.title_kr, contentsformat.title_en, contentsformat.release_date, contentsformat.content_type, contentsformat.is_single, contentsformat.poster_url, contentsformat.top_words, contentsformat.sub_type, contentsformat.is_hot, contentsformat.single_statistics, contentsformat.type_additional_data, contentsformat.season_count);
+        rating_round=Math.round(contentsformat.type_additional_data.rating);
+        System.out.println("평점 : " + rating_round);
         if(contentsData.is_single == false){
             SeasonParam season_param = new SeasonParam();
             season_param.content_id = contentsData.content_id;
@@ -268,6 +273,42 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
 
         //casts.setText(additionalData.casts.toString());
         casts.setText(casts_txt);
+        // Rating
+        switch(rating_round) {
+            case 0:
+                rating.setImageResource(R.drawable.rating00);
+                break;
+            case 1:
+                rating.setImageResource(R.drawable.rating01);
+                break;
+            case 2:
+                rating.setImageResource(R.drawable.rating02);
+                break;
+            case 3:
+                rating.setImageResource(R.drawable.rating03);
+                break;
+            case 4:
+                rating.setImageResource(R.drawable.rating04);
+                break;
+            case 5:
+                rating.setImageResource(R.drawable.rating05);
+                break;
+            case 6:
+                rating.setImageResource(R.drawable.rating06);
+                break;
+            case 7:
+                rating.setImageResource(R.drawable.rating07);
+                break;
+            case 8:
+                rating.setImageResource(R.drawable.rating08);
+                break;
+            case 9:
+                rating.setImageResource(R.drawable.rating09);
+                break;
+            case 10:
+                rating.setImageResource(R.drawable.rating10);
+                break;
+        }
     }
 
     public void setUp(SeasonData seasonData) {

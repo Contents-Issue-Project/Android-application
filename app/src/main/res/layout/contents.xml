@@ -61,13 +61,7 @@
                 android:layout_toEndOf="@id/poster_img"
                 android:text="시즌 몇 화"/>
 
-            <ImageView
-                android:id="@+id/rating_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_text"
-                android:layout_toEndOf="@id/poster_img"
-                android:visibility="gone"/>
+
 
             <TextView
                 android:id="@+id/dateText"
@@ -127,6 +121,13 @@
                 android:layout_below="@id/castsText"
                 android:layout_toEndOf="@id/poster_img"
                 android:src="@drawable/ic_baseline_bookmark_border_24"/>
+
+            <ImageView
+                android:id="@+id/rating_img"
+                android:layout_width="200sp"
+                android:layout_height="60sp"
+                android:layout_below="@id/bookmark_img"
+                android:layout_toEndOf="@id/poster_img" />
         </RelativeLayout>
 
         <androidx.viewpager.widget.ViewPager

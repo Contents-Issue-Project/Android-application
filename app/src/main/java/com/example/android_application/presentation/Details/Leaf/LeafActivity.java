@@ -50,6 +50,7 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     private ViewPager pager;
     private int pageSize;
     private CircleIndicator indicator;
+    private int rating_round;
 
     private ImageButton back_button;
     private ImageView poster;
@@ -57,6 +58,7 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     private TextView title;
     private TextView season;
     private ImageView bookmark;
+    private ImageView rating;
     private TextView date;
     private TextView director;
     private TextView casts;
@@ -83,6 +85,7 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
         title = (TextView)findViewById(R.id.title_text);
         season = (TextView)findViewById(R.id.season_text);
         bookmark = (ImageView)findViewById(R.id.bookmark_img);
+        rating = (ImageView)findViewById(R.id.rating_img);
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
@@ -122,6 +125,7 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     @Override
     public void setUpContent(ContentsFormat contentsformat) {
         contentsData = new ContentsData(contentsformat.content_id, contentsformat.title_kr, contentsformat.title_en, contentsformat.release_date, contentsformat.content_type, contentsformat.is_single, contentsformat.poster_url, contentsformat.top_words, contentsformat.sub_type, contentsformat.is_hot, contentsformat.single_statistics, contentsformat.type_additional_data, contentsformat.season_count);
+        rating_round = Math.round(contentsformat.type_additional_data.rating);
         setUp(contentsData);
     }
 
@@ -129,11 +133,8 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     public void setUpContent(LeafFormat leafformat) {
         leafData = new LeafData(leafformat.content_id, leafformat.season_number, leafformat.episode_number, leafformat.episode_statistics);
 
-
-        System.out.println("여기까지는 했니???");
         ContentsParam contents_param = new ContentsParam();
         contents_param.content_id = leafData.content_id;
-        System.out.println("컨텐트 아이디는 : " + leafData.content_id);
         contentsPresenter.loadContents(contents_param);
 
         pageSetUp(leafData);
@@ -188,6 +189,42 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
 
         //casts.setText(additionalData.casts.toString());
         casts.setText(casts_txt);
+
+        switch(rating_round) {
+            case 0:
+                rating.setImageResource(R.drawable.rating00);
+                break;
+            case 1:
+                rating.setImageResource(R.drawable.rating01);
+                break;
+            case 2:
+                rating.setImageResource(R.drawable.rating02);
+                break;
+            case 3:
+                rating.setImageResource(R.drawable.rating03);
+                break;
+            case 4:
+                rating.setImageResource(R.drawable.rating04);
+                break;
+            case 5:
+                rating.setImageResource(R.drawable.rating05);
+                break;
+            case 6:
+                rating.setImageResource(R.drawable.rating06);
+                break;
+            case 7:
+                rating.setImageResource(R.drawable.rating07);
+                break;
+            case 8:
+                rating.setImageResource(R.drawable.rating08);
+                break;
+            case 9:
+                rating.setImageResource(R.drawable.rating09);
+                break;
+            case 10:
+                rating.setImageResource(R.drawable.rating10);
+                break;
+        }
     }
 
 
