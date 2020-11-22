@@ -20,6 +20,8 @@ import com.example.android_application.presentation.Details.ContentsActivity;
 import com.example.android_application.presentation.ItemData;
 import com.example.android_application.util.DataUnavailableException;
 import com.example.android_application.util.WrongRequestException;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,7 +65,13 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Holder
             addItem(new ItemData(item.contentId, item.title_kr, item.date, item.type, item.is_single, item.poster, item.top_word));
             mark_content_id.add(item.contentId);
         }
-        mark.setData(mark_content_id);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
+        if (account != null) {
+            mark.setData(mark_content_id);
+        } else {
+            mark.emptyData();
+        }
+
         for(String a : mark.getData()){
             System.out.println("content id in Bookmark Adapter : " + a);
         }

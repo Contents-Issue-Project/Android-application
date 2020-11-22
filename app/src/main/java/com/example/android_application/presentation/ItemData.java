@@ -32,7 +32,7 @@ public class ItemData {
         this.poster = "http://static.andang.net".concat(poster);
 
         // topword들을 하나의 String으로 합쳐주는 과정
-        for(int i = 0; i< 2; i++){
+        for(int i = 0; i< this.top_word.length(); i++){
             this.top_word = this.top_word.concat("#".concat(top_word[i]).concat(" "));
         }
     }

@@ -60,6 +60,7 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
     private TextView date;
     private TextView director;
     private TextView casts;
+    private String casts_txt = "";
 
 
     @Override
@@ -171,7 +172,22 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
         // 감독, 등장인물
         ContentsFormat.Additional_Data additionalData = contentsData.type_additional_data;
         director.setText(additionalData.director);
-        casts.setText(additionalData.casts.toString());
+        int i = 0;
+        int size = additionalData.casts.size();
+        while(i < size) {
+
+            casts_txt += additionalData.casts.get(i);
+            if(i == 2){
+                break;
+            }
+            if( i < size -1) {
+                casts_txt += ", ";
+            }
+            i++;
+        }
+
+        //casts.setText(additionalData.casts.toString());
+        casts.setText(casts_txt);
     }
 
 

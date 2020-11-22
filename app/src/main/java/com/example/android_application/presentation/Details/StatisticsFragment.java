@@ -33,7 +33,6 @@ public class StatisticsFragment extends Fragment {
                 .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(imageView);
-
         return view;
     }
 }

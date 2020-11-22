@@ -26,5 +26,4 @@ public class DataFormat {
         @SerializedName("top_words")
         public String[] top_word;
     }
-
 }

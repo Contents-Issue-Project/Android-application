@@ -67,10 +67,11 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
     private ImageView isHot;
     private TextView title;
     private TextView season;
-    private ImageButton bookmark;
+    private ImageView bookmark;
     private TextView date;
     private TextView director;
     private TextView casts;
+    private String casts_txt = "";
     public Marked mark = Marked.getInstance();
     private ArrayList<String> marked_content_id;
     Button[] episode;
@@ -93,7 +94,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         isHot = (ImageView)findViewById(R.id.isHot);
         title = (TextView)findViewById(R.id.title_text);
         season = (TextView)findViewById(R.id.season_text);
-        bookmark = (ImageButton)findViewById(R.id.bookmark_img);
+        bookmark = (ImageView)findViewById(R.id.bookmark_img);
         date = (TextView)findViewById(R.id.date_text);
         director = (TextView)findViewById(R.id.director_text);
         casts = (TextView)findViewById(R.id.casts_text);
@@ -112,13 +113,13 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
             }
         }
 
-
         episode = new Button[]{(Button) findViewById(R.id.episode1)
                 , (Button) findViewById(R.id.episode2), (Button) findViewById(R.id.episode3)
                 , (Button) findViewById(R.id.episode4), (Button) findViewById(R.id.episode5)
                 , (Button) findViewById(R.id.episode6), (Button) findViewById(R.id.episode7)
                 , (Button) findViewById(R.id.episode8), (Button) findViewById(R.id.episode9)
                 , (Button) findViewById(R.id.episode10), (Button) findViewById(R.id.episode11)
+                , (Button) findViewById(R.id.episode12), (Button) findViewById(R.id.episode13)
                 , (Button) findViewById(R.id.episode12), (Button) findViewById(R.id.episode13)
                 , (Button) findViewById(R.id.episode14), (Button) findViewById(R.id.episode15)
                 , (Button) findViewById(R.id.episode16) };
@@ -251,7 +252,22 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         // 감독, 등장인물
         ContentsFormat.Additional_Data additionalData = contentsData.type_additional_data;
         director.setText(additionalData.director);
-        casts.setText(additionalData.casts.toString());
+        int i = 0;
+        int size = additionalData.casts.size();
+        while(i < size) {
+
+            casts_txt += additionalData.casts.get(i);
+            if(i == 2){
+                break;
+            }
+            if( i < size -1) {
+                casts_txt += ", ";
+            }
+            i++;
+        }
+
+        //casts.setText(additionalData.casts.toString());
+        casts.setText(casts_txt);
     }
 
     public void setUp(SeasonData seasonData) {
