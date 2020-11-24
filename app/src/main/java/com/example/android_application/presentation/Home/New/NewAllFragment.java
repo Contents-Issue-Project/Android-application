@@ -37,7 +37,6 @@ public class NewAllFragment extends Fragment implements OnBackPressedListener {
     private TextView textView;
     private RecyclerView recyclerView;
     private NewAdapter new_adapter;
-    private ArrayList<ItemData> list = new ArrayList<>();
 
     public static NewAllFragment newInstance() {
         return new NewAllFragment();
@@ -47,6 +46,8 @@ public class NewAllFragment extends Fragment implements OnBackPressedListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4, container, false);
+
+        ArrayList<ItemData> list = new ArrayList<>();
 
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);

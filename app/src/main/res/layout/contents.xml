@@ -9,13 +9,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/content_backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            android:background="#00ff0000"
-            android:padding="10dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/content_backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:background="#00ff0000"
+                android:padding="10dp"/>
+
+            <ImageView
+                android:id="@+id/bookmark_img"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_bookmark_border_24"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/overview"
@@ -115,18 +127,10 @@
                 android:layout_toEndOf="@id/castsText" />
 
             <ImageView
-                android:id="@+id/bookmark_img"
-                android:layout_width="60sp"
-                android:layout_height="60sp"
-                android:layout_below="@id/castsText"
-                android:layout_toEndOf="@id/poster_img"
-                android:src="@drawable/ic_baseline_bookmark_border_24"/>
-
-            <ImageView
                 android:id="@+id/rating_img"
                 android:layout_width="200sp"
                 android:layout_height="60sp"
-                android:layout_below="@id/bookmark_img"
+                android:layout_below="@id/casts_text"
                 android:layout_toEndOf="@id/poster_img" />
         </RelativeLayout>
 

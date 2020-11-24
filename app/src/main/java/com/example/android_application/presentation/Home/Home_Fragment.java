@@ -55,9 +55,6 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
     private TrendingAdapter trending_adapter;
     private NewAdapter new_adapter;
     private BookmarkAdapter bookmark_adapter;
-    private ArrayList<ItemData> trending_list = new ArrayList<>();
-    private ArrayList<ItemData> new_list = new ArrayList<>();
-    private ArrayList<ItemData> bookmark_list = new ArrayList<>();
     private Button trending_button;
     private Button new_button;
     private Button bookmark_button;
@@ -74,6 +71,10 @@ public class Home_Fragment extends Fragment implements OnBackPressedListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.frag1, container, false);
+
+        ArrayList<ItemData> trending_list = new ArrayList<>();
+        ArrayList<ItemData> new_list = new ArrayList<>();
+        ArrayList<ItemData> bookmark_list = new ArrayList<>();
 
         trending_recyclerView = (RecyclerView) view.findViewById(R.id.Trending_recycler);
         new_recyclerView = (RecyclerView) view.findViewById(R.id.New_recycler);

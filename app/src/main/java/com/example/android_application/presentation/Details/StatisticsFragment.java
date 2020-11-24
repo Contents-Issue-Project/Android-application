@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -28,11 +29,13 @@ public class StatisticsFragment extends Fragment {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.stat_img1, container, false);
 
         imageView = (ImageView) view.findViewById(R.id.statistics);
+
         Glide.with(this)
                 .load(url)
                 .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(imageView);
+
         return view;
     }
 }

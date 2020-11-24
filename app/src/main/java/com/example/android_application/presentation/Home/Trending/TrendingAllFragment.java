@@ -38,7 +38,6 @@ public class TrendingAllFragment extends Fragment implements OnBackPressedListen
     private TextView textView;
     private RecyclerView recyclerView;
     private TrendingAdapter trending_adapter;
-    private ArrayList<ItemData> list = new ArrayList<>();
 
     public static TrendingAllFragment newInstance() {
         return new TrendingAllFragment();
@@ -48,6 +47,8 @@ public class TrendingAllFragment extends Fragment implements OnBackPressedListen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4, container, false);
+
+        ArrayList<ItemData> list = new ArrayList<>();
 
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);

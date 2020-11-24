@@ -31,7 +31,6 @@ public class Bookmark_Fragment extends Fragment implements OnBackPressedListener
     private TextView textView;
     private RecyclerView recyclerView;
     private BookmarkAdapter bookmark_adapter;
-    private ArrayList<ItemData> list = new ArrayList<>();
     private ArrayList<String> mark_content_id = new ArrayList<>();
 
     public static Bookmark_Fragment newInstance() {
@@ -42,6 +41,7 @@ public class Bookmark_Fragment extends Fragment implements OnBackPressedListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.frag4, container, false);
+        ArrayList<ItemData> list = new ArrayList<>();
 
         back_button = (ImageButton) view.findViewById(R.id.back_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);

@@ -242,6 +242,8 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
                     season_param.content_id = contentsData.content_id;
                     season_param.season_number = spinner_position;
                     seasonPresenter.loadSeason(season_param);
+                    String season_text = "시즌"+Integer.toString(spinner_position);
+                    season.setText(season_text);
                 }
 
                 @Override
@@ -333,6 +335,7 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
         ArrayList<ContentsFormat.Statistics_data> statisticsData = contentsData.single_statistics;
         pageSize = statisticsData.size();
         String[] url = new String[statisticsData.size()];
+
         for (int i = 0; i < url.length; i++) {
             url[i] = "http://static.andang.net" + statisticsData.get(i).url;
         }
@@ -376,11 +379,11 @@ public class ContentsActivity extends FragmentActivity implements ContentsContra
             StatisticsFragment statisticsFragment1 = new StatisticsFragment(url[0]);
             adapter.addItem(statisticsFragment1);
         }
-        if (url.length>=2) {
+        if (url.length >= 2) {
             StatisticsFragment statisticsFragment2 = new StatisticsFragment(url[1]);
             adapter.addItem(statisticsFragment2);
         }
-        if (url.length>=3) {
+        if (url.length >= 3) {
             StatisticsFragment statisticsFragment3 = new StatisticsFragment(url[2]);
             adapter.addItem(statisticsFragment3);
         }

@@ -8,13 +8,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.android_application.presentation.Home.Bookmark.BookmarkLogoutFragment;
 import com.example.android_application.presentation.Home.Bookmark.Bookmark_Fragment;
 import com.example.android_application.presentation.Home.Home_Fragment;
 import com.example.android_application.presentation.Home.OnBackPressedListener;
 import com.example.android_application.presentation.Mypage.SignInFragment;
 import com.example.android_application.presentation.Search.SearchFragment;
 import com.example.android_application.presentation.Search.SearchResultFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Array;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchFragment frag2;
     private SignInFragment frag3;
     private Bookmark_Fragment frag4;
+    private BookmarkLogoutFragment frag5;
     private SearchFragment searchFragment;
     private SearchResultFragment searchResultFragment;
 
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         frag2 = new SearchFragment();
         frag3 = new SignInFragment();
         frag4 = new Bookmark_Fragment();
+        frag5 = new BookmarkLogoutFragment();
 
         setFrag(0); // 첫 프래그먼트 화면 지정
 
@@ -87,9 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 3: // 로그아웃 상태일 때 화면 구별 필요
-                ft.replace(R.id.main_frame, frag4);
-                ft.commit();
-                break;
+
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+                if (account != null) {
+                    ft.replace(R.id.main_frame, frag4);
+                    ft.commit();
+                } else {
+                    ft.replace(R.id.main_frame, frag5);
+                    ft.commit();
+                }
         }
 
     }
