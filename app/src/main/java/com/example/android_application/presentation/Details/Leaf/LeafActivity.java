@@ -233,8 +233,11 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
         ArrayList<LeafFormat.Statistics_data> statisticsData = leafData.episode_statistics;
         pageSize = statisticsData.size();
         String[] url = new String[statisticsData.size()];
+        String[] statistics_name = new String[statisticsData.size()];
+
         for (int i = 0; i < url.length; i++) {
             url[i] = "http://static.andang.net" + statisticsData.get(i).url;
+            statistics_name[i] = statisticsData.get(i).statistics_name;
         }
 
         pager = findViewById(R.id.pager);
@@ -243,15 +246,15 @@ public class LeafActivity extends AppCompatActivity implements LeafContract.View
         MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), 1);
 
         if (url.length >= 1) {
-            StatisticsFragment statisticsFragment1 = new StatisticsFragment(url[0]);
+            StatisticsFragment statisticsFragment1 = new StatisticsFragment(url[0],"< " + statistics_name[0] + " >");
             adapter.addItem(statisticsFragment1);
         }
         if (url.length>=2) {
-            StatisticsFragment statisticsFragment2 = new StatisticsFragment(url[1]);
+            StatisticsFragment statisticsFragment2 = new StatisticsFragment(url[1], "< " + statistics_name[1] + " >");
             adapter.addItem(statisticsFragment2);
         }
         if (url.length>=3) {
-            StatisticsFragment statisticsFragment3 = new StatisticsFragment(url[2]);
+            StatisticsFragment statisticsFragment3 = new StatisticsFragment(url[2], "< " + statistics_name[2] + " >");
             adapter.addItem(statisticsFragment3);
         }
         pager.setAdapter(adapter);

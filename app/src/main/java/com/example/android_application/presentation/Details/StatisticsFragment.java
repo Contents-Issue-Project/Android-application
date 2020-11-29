@@ -17,10 +17,14 @@ import io.reactivex.annotations.NonNull;
 
 public class StatisticsFragment extends Fragment {
     ImageView imageView;
-    String url;
+    TextView textView;
 
-    public StatisticsFragment(String url) {
+    String url;
+    String stat_name;
+
+    public StatisticsFragment(String url, String stat_name) {
         this.url = url;
+        this.stat_name = stat_name;
     }
 
     @Nullable
@@ -29,13 +33,14 @@ public class StatisticsFragment extends Fragment {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.stat_img1, container, false);
 
         imageView = (ImageView) view.findViewById(R.id.statistics);
+        textView = (TextView) view.findViewById(R.id.stat_name);
 
         Glide.with(this)
                 .load(url)
                 .placeholder(R.drawable.loading_img)
                 .error(R.drawable.error_img)
                 .into(imageView);
-
+        textView.setText(stat_name);
         return view;
     }
 }

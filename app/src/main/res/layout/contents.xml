@@ -137,7 +137,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="250sp"/>
+            android:layout_height="330sp"/>
 
 
         <me.relex.circleindicator.CircleIndicator
