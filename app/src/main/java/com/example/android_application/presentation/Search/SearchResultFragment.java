@@ -1,0 +1,104 @@
+package com.example.android_application.presentation.Search;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.android_application.Data.Search.SearchParam.SearchParam;
+import com.example.android_application.MainActivity;
+import com.example.android_application.R;
+import com.example.android_application.presentation.Home.OnBackPressedListener;
+import com.example.android_application.presentation.ItemData;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class SearchResultFragment extends Fragment implements OnBackPressedListener, Serializable{
+
+    private SearchContract.Presenter searchPresenter;
+    private View view;
+    private ImageButton back_button;
+    private String top_title;
+    private TextView textView;
+    private RecyclerView recyclerView;
+    private SearchAdapter search_adapter;
+    private ArrayList<ItemData> list = new ArrayList<>();
+
+    public static SearchResultFragment newInstance() {
+        return new SearchResultFragment();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.frag4, container, false);
+
+        back_button = (ImageButton) view.findViewById(R.id.back_button);
+        recyclerView = (RecyclerView) view.findViewById(R.id.display_recycler);
+        textView = (TextView) view.findViewById(R.id.top_title);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(SearchFragment.newInstance());
+            }
+        });
+
+        recyclerView.setHasFixedSize(true);
+        search_adapter = new SearchAdapter(getActivity(), list);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        recyclerView.setAdapter(search_adapter);
+
+        searchPresenter = new SearchPresenter(search_adapter);
+
+        Bundle bundle = this.getArguments();
+
+        SearchParam condition  = (SearchParam) bundle.getSerializable("search_condition");
+        System.out.println("type : " + condition.content_type);
+        System.out.println("genre : " + condition.sub_type);
+        System.out.println("search_word : " + condition.search_word);
+
+        DateRange dt = (DateRange)condition.date_range;
+        if(dt != null)
+            System.out.println("date_range : " + dt.start_date + ", " + dt.end_date);
+
+        //SearchParam search_param = new SearchParam(condition.content_type, condition.search_word, condition.sub_type, null); //date_ex);
+
+        searchPresenter.loadSearch(condition);
+
+        if (condition.search_word == null) {
+            top_title = "검색 결과";
+        } else {
+            top_title = condition.search_word+" 검색 결과";
+        }
+        textView.setText(top_title);
+
+        Log.e("Frag", "SearchResultFragment");
+
+        return view;
+    }
+
+    @Override
+    public void onBack() {
+        ((MainActivity)getActivity()).replaceFragment(SearchFragment.newInstance());
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnBackPressedListener(this);
+    }
+
+}

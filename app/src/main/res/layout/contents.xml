@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/content_backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:background="#00ff0000"
+                android:padding="10dp"/>
+
+            <ImageView
+                android:id="@+id/bookmark_img"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_bookmark_border_24"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/poster_img"
+                android:layout_width="162sp"
+                android:layout_height="240sp"
+                android:layout_margin="10sp"/>
+
+            <ImageView
+                android:id="@+id/isHot"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_margin="10sp" />
+
+
+            <!--
+                    <ImageView
+                        android:id="@+id/mood_img"
+                        android:layout_width="100sp"
+                        android:layout_height="50sp"
+                        android:layout_below="@id/poster_img"
+                        android:layout_toEndOf="@id/bookmark_img"
+                        android:background="#00ff00" />
+            -->
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/poster_img"
+                android:textSize="35sp" />
+
+
+            <TextView
+                android:id="@+id/season_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_below="@id/title_text"
+                android:layout_toEndOf="@id/poster_img"
+                android:text="시즌 몇 화"/>
+
+
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="출시일 : "
+                android:layout_below="@id/season_text"
+                android:layout_toEndOf="@id/poster_img"/>
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/season_text"
+                android:layout_toEndOf="@id/dateText" />
+
+            <TextView
+                android:id="@+id/directorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="감독 : "
+                android:textSize="20sp"
+                android:layout_below="@id/dateText"
+                android:layout_toEndOf="@id/poster_img"/>
+
+            <TextView
+                android:id="@+id/director_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/dateText"
+                android:layout_toEndOf="@id/directorText" />
+
+            <TextView
+                android:id="@+id/castsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="등장인물 : "
+                android:textSize="15sp"
+                android:layout_below="@id/directorText"
+                android:layout_toEndOf="@id/poster_img"/>
+
+            <TextView
+                android:id="@+id/casts_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_below="@id/directorText"
+                android:layout_toEndOf="@id/castsText" />
+
+            <ImageView
+                android:id="@+id/rating_img"
+                android:layout_width="200sp"
+                android:layout_height="60sp"
+                android:layout_below="@id/casts_text"
+                android:layout_toEndOf="@id/poster_img" />
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="330sp"/>
+
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            app:ci_drawable="@drawable/circleindicator"
+            app:ci_height="7dp"
+            app:ci_width="7dp"
+            app:ci_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <Spinner
+            android:id="@+id/season_spinner"
+            android:layout_width="150sp"
+            android:layout_height="30sp"
+            android:layout_margin="10sp"
+            android:layout_gravity="end"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/episode1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="1화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="2화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="3화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="4화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/episode5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="5화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="6화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="7화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="8화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/episode9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="9화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="10화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="11화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="12화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/episode13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="13화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="14화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="15화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/episode16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="16화"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
